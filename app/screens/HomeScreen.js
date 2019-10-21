@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import firebase from "../.././config/Firebase";
 import colors from "../constants/Colors";
-import Text from "../components/CustomText";
+import CustomText from "../components/CustomText";
 
 class HomeScreen extends React.Component {
   state = { currentUser: null };
@@ -14,12 +14,18 @@ class HomeScreen extends React.Component {
     const { currentUser } = this.state;
     return (
       <View style={styles.container}>
+        <Image
+          style={styles.welcomeImage}
+          source={require("../.././assets/images/black.jpg")}
+        />
         <Text style={styles.text}>Hi {currentUser && currentUser.email}!</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("SignUpScreen")}
         >
-          <Text type="extra-bold">Tillbaka</Text>
+          <CustomText type="extra-bold">
+            <Text style={styles.buttonText}>Tillbaka</Text>
+          </CustomText>
         </TouchableOpacity>
       </View>
     );
@@ -28,9 +34,10 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: colors.white
+    backgroundColor: colors.lightWhite,
+    color: colors.dark
   },
   button: {
     marginTop: 30,
@@ -40,6 +47,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.button,
     borderRadius: 0,
     width: 200
+  },
+  buttonText: {
+    color: colors.lightWhite
+  },
+  welcomeImage: {
+    width: 400,
+    height: 200,
+    resizeMode: "cover",
+    marginTop: 1
   }
 });
 export default HomeScreen;
