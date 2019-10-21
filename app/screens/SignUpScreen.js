@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import firebase from "../.././config/Firebase";
+import colors from "../constants/Colors";
 
 class SignUpScreen extends React.Component {
   state = { email: "", password: "", errorMessage: null };
@@ -17,7 +18,9 @@ class SignUpScreen extends React.Component {
       <View style={styles.container}>
         <Text>Sign Up</Text>
         {this.state.errorMessage && (
-          <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
+          <Text style={{ color: colors.button }}>
+            {this.state.errorMessage}
+          </Text>
         )}
         <TextInput
           placeholder="Email"
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: "90%",
-    borderColor: "gray",
+    borderColor: colors.button,
     borderWidth: 1,
     marginTop: 8
   }

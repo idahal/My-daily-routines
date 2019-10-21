@@ -2,6 +2,7 @@ import React from "react";
 import * as Font from "expo-font";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 // import Text from "./app/components/CustomText";
+// import colors from "./app/constants/Colors";
 
 import SwitchNavigator from "./app/navigation/Navigation";
 
