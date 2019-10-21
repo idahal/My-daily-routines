@@ -1,7 +1,7 @@
 const colors = {
-  title: "#00B75D",
-  text: "#ff0066",
-  button: "#000000"
+  button: "#035E5B",
+  lightWhite: "#FBFBFB",
+  dark: "#1B1A18"
 };
 
 export default colors;
