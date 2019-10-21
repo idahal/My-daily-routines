@@ -1,20 +1,37 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import * as Font from "expo-font";
+import { View, ActivityIndicator } from "react-native";
+// import Text from "./app/components/CustomText";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Hejsan</Text>
-    </View>
-  );
-}
+import SwitchNavigator from "./app/navigation/Navigation";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false
+    };
   }
-});
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Raleway-ExtraBold": require("./assets/fonts/Raleway-ExtraBold.ttf"),
+      "Raleway-LightItalic": require("./assets/fonts/Raleway-LightItalic.ttf"),
+      "Raleway-Regular": require("./assets/fonts/Raleway-Regular.ttf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+  render() {
+    return (
+      <View>
+        {this.state.fontLoaded ? (
+          <SwitchNavigator />
+        ) : (
+          <ActivityIndicator size="large" />
+        )}
+      </View>
+    );
+  }
+}
