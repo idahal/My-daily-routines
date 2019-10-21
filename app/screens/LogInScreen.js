@@ -3,6 +3,11 @@ import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import firebase from "../.././config/Firebase";
 
 class LogInScreen extends React.Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.props.navigation.navigate(user ? "HomeScreen" : "SignUpScreen");
+    });
+  }
   state = { email: "", password: "", errorMessage: null };
   handleLogin = () => {
     const { email, password } = this.state;

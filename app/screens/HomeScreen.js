@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
         <Text>Hi {currentUser && currentUser.email}!</Text>
         <Button
           title="Hem"
-          onPress={() => this.props.navigation.navigate("LogInScreen")}
+          onPress={() => this.props.navigation.navigate("SignUpScreen")}
         />
       </View>
     );

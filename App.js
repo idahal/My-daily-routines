@@ -1,6 +1,6 @@
 import React from "react";
 import * as Font from "expo-font";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 // import Text from "./app/components/CustomText";
 
 import SwitchNavigator from "./app/navigation/Navigation";
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {this.state.fontLoaded ? (
           <SwitchNavigator />
         ) : (
@@ -35,3 +35,10 @@ export default class App extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff"
+  }
+});
