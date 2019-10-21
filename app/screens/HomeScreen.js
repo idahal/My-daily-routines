@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: colors.lightWhite,
-    color: colors.dark
+    backgroundColor: colors.lightWhite
   },
   button: {
     marginTop: 30,
