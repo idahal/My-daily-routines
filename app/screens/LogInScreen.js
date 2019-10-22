@@ -5,7 +5,7 @@ import firebase from "../.././config/Firebase";
 class LogInScreen extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      this.props.navigation.navigate(user ? "HomeScreen" : "SignUpScreen");
+      this.props.navigation.navigate(user ? "HomeScreen" : "LogInScreen");
     });
   }
   state = { email: "", password: "", errorMessage: null };

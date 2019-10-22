@@ -1,4 +1,4 @@
-import * as fb from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import {
@@ -21,6 +21,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let firebase = fb.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+export const firestore = firebase.firestore();
+
+window.firebase = firebase;
 
 export default firebase;

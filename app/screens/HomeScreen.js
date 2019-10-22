@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import firebase from "../.././config/Firebase";
+import firebase, { db } from "../.././config/Firebase";
 import colors from "../constants/Colors";
 import CustomText from "../components/CustomText";
 
@@ -18,13 +18,24 @@ class HomeScreen extends React.Component {
           style={styles.welcomeImage}
           source={require("../.././assets/images/black.jpg")}
         />
-        <Text style={styles.text}>Hi {currentUser && currentUser.email}!</Text>
+        <Text style={styles.text}>
+          Hi {currentUser && currentUser.email}! Welcome{" "}
+          {currentUser && currentUser.uid}
+        </Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("SignUpScreen")}
         >
           <CustomText type="extra-bold">
             <Text style={styles.buttonText}>Tillbaka</Text>
+          </CustomText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate("CreateActivityScreen")}
+        >
+          <CustomText type="extra-bold">
+            <Text style={styles.buttonText}>Skapa aktiviter</Text>
           </CustomText>
         </TouchableOpacity>
       </View>
