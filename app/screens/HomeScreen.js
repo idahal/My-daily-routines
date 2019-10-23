@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  Button
+} from "react-native";
 import firebase, { db } from "../.././config/Firebase";
 import colors from "../constants/Colors";
 import CustomText from "../components/CustomText";
@@ -10,6 +17,14 @@ class HomeScreen extends React.Component {
     const { currentUser } = firebase.auth();
     this.setState({ currentUser });
   }
+
+  handleSignout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate("LogInScreen"))
+      .catch(error => this.setState({ errorMessage: error.message }));
+  };
   render() {
     const { currentUser } = this.state;
     return (
@@ -38,6 +53,8 @@ class HomeScreen extends React.Component {
             <Text style={styles.buttonText}>Skapa aktiviter</Text>
           </CustomText>
         </TouchableOpacity>
+
+        <Button title="Logga ut" onPress={this.handleSignout} />
       </View>
     );
   }
