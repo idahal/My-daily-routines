@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   StyleSheet,
   Text,
@@ -14,7 +15,7 @@ import colors from "../constants/Colors";
 // import CustomText from "../components/CustomText";
 
 class AddActivity extends React.Component {
-  state = { content: "" };
+  state = { content: "", minutes: "" };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -24,17 +25,18 @@ class AddActivity extends React.Component {
   handleChange = event => {
     event.preventDefault();
 
-    const { content } = this.state;
+    const { content, minutes } = this.state;
+    const number = parseInt(minutes);
 
-    const activity = { content };
+    const activity = { content, number };
 
     firestore.collection("activities").add(activity);
 
-    this.setState({ content: "" });
+    this.setState({ content: "", minutes: "" });
   };
 
   render() {
-    const { content } = this.state;
+    const { content, minutes } = this.state;
 
     return (
       <View>
@@ -46,6 +48,13 @@ class AddActivity extends React.Component {
           placeholder="Namn"
           onChangeText={content => this.setState({ content })}
           value={content}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Antal minuter"
+          keyboardType={"numeric"} // This prop help to open numeric keyboard
+          onChangeText={minutes => this.setState({ minutes })}
+          value={minutes}
         />
 
         <Button title="Add activities" onPress={this.handleChange}></Button>
@@ -73,15 +82,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.lightWhite
   },
-  welcomeImage: {
-    width: 400,
-    height: 200,
-    resizeMode: "cover",
-    marginTop: 1
-  },
+
   textInput: {
     height: 40,
-    width: "90%",
+    width: 350,
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 3
