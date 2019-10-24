@@ -14,8 +14,6 @@ import colors from "../constants/Colors";
 import CustomText from "../components/CustomText";
 
 class HomeScreen extends React.Component {
-  state = { email: "" };
-
   get uid() {
     return auth.currentUser.uid;
   }
@@ -31,8 +29,7 @@ class HomeScreen extends React.Component {
       .catch(error => this.setState({ errorMessage: error.message }));
   };
   render() {
-    const { email } = this.state;
-    console.log(this.email);
+    const email = auth.currentUser.uid;
     return (
       <View style={styles.container}>
         <Image
@@ -40,6 +37,7 @@ class HomeScreen extends React.Component {
           source={require("../.././assets/images/black.jpg")}
         />
         <Text style={styles.text}>Hi {email}!</Text>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("SignUpScreen")}
@@ -54,6 +52,15 @@ class HomeScreen extends React.Component {
         >
           <CustomText type="extra-bold">
             <Text style={styles.buttonText}>Skapa aktiviter</Text>
+          </CustomText>
+        </TouchableOpacity>
+        {/* To the createroutinescreen */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate("CreateRoutineScreen")}
+        >
+          <CustomText type="extra-bold">
+            <Text style={styles.buttonText}>Skapa rutiner</Text>
           </CustomText>
         </TouchableOpacity>
 
