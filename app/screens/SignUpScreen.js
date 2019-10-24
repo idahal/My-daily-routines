@@ -1,19 +1,37 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
-import firebase from "../.././config/Firebase";
+import { auth, createUsersDocument } from "../.././config/Firebase";
 import colors from "../constants/Colors";
 
 class SignUpScreen extends React.Component {
-  state = { email: "", password: "", errorMessage: null };
-  handleSignUp = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate("HomeScreen"))
-      .catch(error => this.setState({ errorMessage: error.message }));
-    console.log("handleSignUp");
+  state = { email: "", password: "" };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
   };
+
+  handleSignup = async event => {
+    event.preventDefault();
+    const { email, password } = this.state;
+    // first create a user with email and password
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      // then create a users collection with the same uid
+      createUsersDocument(user);
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.setState({ email: "", password: "" });
+  };
+
   render() {
+    const { email, password } = this.state;
     return (
       <View style={styles.container}>
         <Text>Sign Up</Text>
@@ -27,7 +45,7 @@ class SignUpScreen extends React.Component {
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={email => this.setState({ email })}
-          value={this.state.email}
+          value={email}
         />
         <TextInput
           secureTextEntry
@@ -35,9 +53,9 @@ class SignUpScreen extends React.Component {
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={password => this.setState({ password })}
-          value={this.state.password}
+          value={password}
         />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
+        <Button title="Sign Up" onPress={this.handleSignup} />
         <Button
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate("LogInScreen")}

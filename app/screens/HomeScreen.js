@@ -7,17 +7,22 @@ import {
   Image,
   Button
 } from "react-native";
-import firebase, { db } from "../.././config/Firebase";
+import firebase, { firestore } from "../.././config/Firebase";
+import { auth } from "../.././config/Firebase";
+
 import colors from "../constants/Colors";
 import CustomText from "../components/CustomText";
 
 class HomeScreen extends React.Component {
-  state = { currentUser: null };
-  componentDidMount() {
-    const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
+  state = { email: "" };
+
+  get uid() {
+    return auth.currentUser.uid;
   }
 
+  get userRef() {
+    return firestore.doc(`users/${this.uid}`);
+  }
   handleSignout = () => {
     firebase
       .auth()
@@ -26,17 +31,15 @@ class HomeScreen extends React.Component {
       .catch(error => this.setState({ errorMessage: error.message }));
   };
   render() {
-    const { currentUser } = this.state;
+    const { email } = this.state;
+    console.log(this.email);
     return (
       <View style={styles.container}>
         <Image
           style={styles.welcomeImage}
           source={require("../.././assets/images/black.jpg")}
         />
-        <Text style={styles.text}>
-          Hi {currentUser && currentUser.email}! Welcome{" "}
-          {currentUser && currentUser.uid}
-        </Text>
+        <Text style={styles.text}>Hi {email}!</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("SignUpScreen")}
