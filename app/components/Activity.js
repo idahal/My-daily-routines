@@ -10,18 +10,14 @@ const Activity = ({ id, content, number }) => {
     <View style={styles.activity}>
       <Text>{content}</Text>
       <Text>{number}</Text>
-      <Button title="delete" onClick={remove}>
-        X
-      </Button>
+      <Button title="delete" onClick={remove}></Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   activity: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    height: 50,
     backgroundColor: "pink"
   }
 });

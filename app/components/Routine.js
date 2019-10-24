@@ -9,21 +9,16 @@ const Routine = ({ id, content, hours, minutes }) => {
   return (
     <View style={styles.routine}>
       <Text>{content}</Text>
-      <Text>{hours}</Text>
-      <Text>{minutes}</Text>
-      <Button title="delete" onClick={remove}>
-        X
-      </Button>
+      <Text>
+        {hours}:{minutes}
+      </Text>
+      <Button title="Ta bort" onPress={remove}></Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   routine: {
-    flex: 1,
-    justifyContent: "flex-start",
-    height: 150,
-    alignItems: "center",
     backgroundColor: "green"
   }
 });

@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   View,
   Image,
-  Button
+  Button,
+  ImageBackground
 } from "react-native";
 import firebase, { firestore } from "../.././config/Firebase";
 import { auth } from "../.././config/Firebase";
@@ -32,10 +33,16 @@ class HomeScreen extends React.Component {
     const email = auth.currentUser.uid;
     return (
       <View style={styles.container}>
-        <Image
+        <ImageBackground
           style={styles.welcomeImage}
           source={require("../.././assets/images/black.jpg")}
-        />
+        >
+          <CustomText type="extra-bold">
+            <Text style={styles.welcometext}>
+              Mina{"\n"}rutiner{"\n"}i vardagen
+            </Text>
+          </CustomText>
+        </ImageBackground>
         <Text style={styles.text}>Hi {email}!</Text>
 
         <TouchableOpacity
@@ -91,8 +98,14 @@ const styles = StyleSheet.create({
   welcomeImage: {
     width: 400,
     height: 200,
-    resizeMode: "cover",
-    marginTop: 1
+    position: "relative"
+  },
+  welcometext: {
+    color: colors.lightWhite,
+    position: "absolute", // child
+    top: 60, // position where you want
+    left: 80,
+    fontSize: 24
   }
 });
 export default HomeScreen;
