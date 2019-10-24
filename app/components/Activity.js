@@ -18,7 +18,7 @@ const Activity = ({ id, content, number }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  activity: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
