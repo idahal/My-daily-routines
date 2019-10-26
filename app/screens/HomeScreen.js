@@ -13,6 +13,7 @@ import { auth } from "../.././config/Firebase";
 import colors from "../constants/Colors";
 import Hero from "../components/Hero";
 import MenuButton from "../components/MenuButton";
+import LogoutButton from "../components/LogoutButton";
 
 class HomeScreen extends React.Component {
   get uid() {
@@ -56,7 +57,7 @@ class HomeScreen extends React.Component {
           }}
         />
 
-        <MenuButton text="Logga ut" onPress={this.handleSignout} />
+        <LogoutButton text="Logga ut" onPress={this.handleSignout} />
       </View>
     );
   }
