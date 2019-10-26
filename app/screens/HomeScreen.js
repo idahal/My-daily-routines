@@ -10,10 +10,9 @@ import {
 } from "react-native";
 import firebase, { firestore } from "../.././config/Firebase";
 import { auth } from "../.././config/Firebase";
-
 import colors from "../constants/Colors";
-import CustomText from "../components/CustomText";
 import Hero from "../components/Hero";
+import MenuButton from "../components/MenuButton";
 
 class HomeScreen extends React.Component {
   get uid() {
@@ -33,37 +32,31 @@ class HomeScreen extends React.Component {
   render() {
     const email = auth.currentUser.uid;
     return (
-        <View style={styles.container}>
-            <Hero />
-            <Text style={styles.text}>Hi {email}!</Text>
+      <View style={styles.container}>
+        <Hero />
+        <Text style={styles.text}>Hi {email}!</Text>
 
-        <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate("SignUpScreen")}
-        >
-            <CustomText type="extra-bold">
-                <Text style={styles.buttonText}>Tillbaka</Text>
-            </CustomText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("CreateActivityScreen")}
-        >
-            <CustomText type="extra-bold">
-                <Text style={styles.buttonText}>Skapa aktiviter</Text>
-            </CustomText>
-        </TouchableOpacity>
-        {/* To the createroutinescreen */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("CreateRoutineScreen")}
-        >
-          <CustomText type="extra-bold">
-            <Text style={styles.buttonText}>Skapa rutiner</Text>
-          </CustomText>
-        </TouchableOpacity>
+        {/* main menu */}
+        <MenuButton
+          text="Skapa en aktivitet"
+          onPress={() => {
+            this.props.navigation.navigate("CreateActivityScreen");
+          }}
+        />
+        <MenuButton
+          text="Skapa en rutin"
+          onPress={() => {
+            this.props.navigation.navigate("CreateRoutineScreen");
+          }}
+        />
+        <MenuButton
+          text="Mina sparade rutiner"
+          onPress={() => {
+            this.props.navigation.navigate("CreateRoutineScreen");
+          }}
+        />
 
-        <Button title="Logga ut" onPress={this.handleSignout} />
+        <MenuButton text="Logga ut" onPress={this.handleSignout} />
       </View>
     );
   }
