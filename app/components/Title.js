@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     right: 10,
     fontSize: 14,
     width: "70%",
-    transform: "rotate(5deg)",
+    transform: [{ rotate: "5deg" }],
     color: colors.black
   }
 });

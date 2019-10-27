@@ -1,20 +1,18 @@
 import React from "react";
-// import moment from "moment";
-
 import {
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
   Image,
   TextInput,
   ScrollView,
-  Button
+  Button,
+  Text
 } from "react-native";
 import { firestore } from "../.././config/Firebase";
 import TimePicker from "react-native-simple-time-picker";
 import colors from "../constants/Colors";
-// import CustomText from "../components/CustomText";
+import CustomText from "../components/CustomText";
 
 class AddRoutine extends React.Component {
   state = { content: "", selectedHours: "", selectedMinutes: "" };
@@ -43,7 +41,9 @@ class AddRoutine extends React.Component {
 
     return (
       <View>
-        <Text>Min Rutiner</Text>
+        <Text style={styles.text}>
+          <CustomText type="regular">Namn på rutinen</CustomText>
+        </Text>
 
         <TextInput
           style={styles.textInput}
@@ -52,9 +52,14 @@ class AddRoutine extends React.Component {
           onChangeText={content => this.setState({ content })}
           value={content}
         />
-        <Text>
-          {selectedHours}:{selectedMinutes}
+        <Text style={styles.text}>
+          <CustomText type="regular">
+            Vilken tid på klockan ska du vara klar:
+          </CustomText>
         </Text>
+        {/* <Text>
+          {selectedHours}:{selectedMinutes}
+        </Text> */}
         <TimePicker
           selectedHours={selectedHours}
           selectedMinutes={selectedMinutes}
@@ -96,6 +101,11 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 3
+  },
+  text: {
+    color: colors.black,
+    marginTop: 16,
+    fontSize: 16
   }
 });
 export default AddRoutine;

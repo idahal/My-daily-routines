@@ -53,7 +53,7 @@ class HomeScreen extends React.Component {
         <MenuButton
           text="Mina sparade rutiner"
           onPress={() => {
-            this.props.navigation.navigate("CreateRoutineScreen");
+            this.props.navigation.navigate("SavedRoutinesScreen");
           }}
         />
 
