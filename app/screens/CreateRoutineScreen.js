@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { firestore } from "../.././config/Firebase";
 import Routines from ".././components/Routines";
+import Title from ".././components/Title";
+
 import { collectIdsAndDocs } from "../.././config/utilities";
 
 class CreateRoutineScreen extends React.Component {
@@ -11,12 +13,10 @@ class CreateRoutineScreen extends React.Component {
   unsubscribe = null;
 
   componentDidMount = async () => {
-    this.unsubscribe = firestore
-      .collection("routines")
-      .onSnapshot(snapshot => {
-        const routines = snapshot.docs.map(collectIdsAndDocs);
-        this.setState({ routines });
-      });
+    this.unsubscribe = firestore.collection("routines").onSnapshot(snapshot => {
+      const routines = snapshot.docs.map(collectIdsAndDocs);
+      this.setState({ routines });
+    });
   };
 
   componentWillUnmount = () => {
@@ -28,7 +28,7 @@ class CreateRoutineScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>Hejsan</Text>
+        <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
         <Routines routines={routines} />
       </View>
     );
