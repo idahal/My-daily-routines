@@ -10,8 +10,11 @@ const Hero = () => {
       style={styles.welcomeImage}
       source={require("../.././assets/images/black.jpg")}
     >
+      <CustomText type="gloria">
+        <Text style={styles.welcometext}>Min app för:</Text>
+      </CustomText>
       <CustomText type="extra-bold">
-        <Text style={styles.welcometext}>
+        <Text style={styles.titletext}>
           Mina{"\n"}rutiner{"\n"}i vardagen
         </Text>
       </CustomText>
@@ -25,12 +28,20 @@ const styles = StyleSheet.create({
     height: 200,
     position: "relative"
   },
-  welcometext: {
+  titletext: {
     color: colors.lightWhite,
     position: "absolute", // child
     top: 60, // position where you want
     left: 80,
     fontSize: 24
+  },
+  welcometext: {
+    color: colors.lightWhite,
+    position: "absolute", // child
+    top: 16, // position where you want
+    left: 110,
+    fontSize: 24,
+    textTransform: "uppercase"
   }
 });
 export default Hero;

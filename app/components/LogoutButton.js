@@ -19,7 +19,6 @@ class LogoutButton extends Component {
 const styles = StyleSheet.create({
   button: {
     marginTop: 32,
-    marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.dark,

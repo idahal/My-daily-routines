@@ -8,6 +8,8 @@ class CustomText extends Component {
         return "Raleway-ExtraBold";
       case "light-italic":
         return "Raleway-LightItalic";
+      case "gloria":
+        return "GloriaHallelujah-Regular";
       default:
         return "Raleway-Regular";
     }

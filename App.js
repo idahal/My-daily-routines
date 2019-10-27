@@ -18,7 +18,8 @@ export default class App extends React.Component {
     await Font.loadAsync({
       "Raleway-ExtraBold": require("./assets/fonts/Raleway-ExtraBold.ttf"),
       "Raleway-LightItalic": require("./assets/fonts/Raleway-LightItalic.ttf"),
-      "Raleway-Regular": require("./assets/fonts/Raleway-Regular.ttf")
+      "Raleway-Regular": require("./assets/fonts/Raleway-Regular.ttf"),
+      "GloriaHallelujah-Regular": require("./assets/fonts/GloriaHallelujah-Regular.ttf")
     });
 
     this.setState({ fontLoaded: true });
