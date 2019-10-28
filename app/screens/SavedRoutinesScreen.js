@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { firestore } from "../.././config/Firebase";
 import Routines from ".././components/Routines";
 import Title from ".././components/Title";
+import Arrow from ".././icons/Arrow";
 
 import { collectIdsAndDocs } from "../.././config/utilities";
 
@@ -28,7 +29,8 @@ class SavedRoutineScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
+        <Title title={"Mina\nsparade rutiner"} text={<Arrow></Arrow>} />
+
         <Routines routines={routines} />
       </View>
     );

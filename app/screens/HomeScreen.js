@@ -86,11 +86,9 @@ const styles = StyleSheet.create({
     height: 200,
     position: "relative"
   },
-  welcometext: {
-    color: colors.lightWhite,
-    position: "absolute", // child
-    top: 60, // position where you want
-    left: 80,
+  text: {
+    color: colors.black,
+    fontFamily: "Raleway-Regular",
     fontSize: 24
   }
 });

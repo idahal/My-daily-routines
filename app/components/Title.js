@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-
 import colors from "../constants/Colors";
-import CustomText from "../components/CustomText";
+import font from "../constants/Fonts";
 
 class Title extends Component {
   render() {
     const { title, text } = this.props;
     return (
       <View style={styles.topview}>
-        <CustomText type="extra-bold">
-          <Text style={styles.titletext}>{title}</Text>
-        </CustomText>
+        <Text style={styles.titletext}>{title}</Text>
         <View style={styles.circle}>
-          <CustomText type="gloria">
-            <Text style={styles.welcometext}>{text}</Text>
-          </CustomText>
+          <Text style={styles.welcometext}>{text}</Text>
         </View>
       </View>
     );
@@ -36,6 +31,7 @@ const styles = StyleSheet.create({
     top: 40, // position where you want
     left: 16,
     fontSize: 24,
+    fontFamily: font.extrabold,
     textTransform: "uppercase"
   },
   circle: {
@@ -53,6 +49,7 @@ const styles = StyleSheet.create({
     top: 16, // position where you want
     right: 10,
     fontSize: 14,
+    fontFamily: font.gloria,
     width: "70%",
     transform: [{ rotate: "5deg" }],
     color: colors.black

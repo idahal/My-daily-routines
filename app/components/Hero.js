@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-
 import colors from "../constants/Colors";
-import CustomText from "../components/CustomText";
+import font from "../constants/Fonts";
 
 const Hero = () => {
   return (
@@ -10,14 +9,10 @@ const Hero = () => {
       style={styles.welcomeImage}
       source={require("../.././assets/images/black.jpg")}
     >
-      <CustomText type="gloria">
-        <Text style={styles.welcometext}>Min app för:</Text>
-      </CustomText>
-      <CustomText type="extra-bold">
-        <Text style={styles.titletext}>
-          Mina{"\n"}rutiner{"\n"}i vardagen
-        </Text>
-      </CustomText>
+      <Text style={styles.welcometext}>Min app för:</Text>
+      <Text style={styles.titletext}>
+        Mina{"\n"}rutiner{"\n"}i vardagen
+      </Text>
     </ImageBackground>
   );
 };
@@ -30,6 +25,7 @@ const styles = StyleSheet.create({
   },
   titletext: {
     color: colors.lightWhite,
+    fontFamily: font.extrabold,
     position: "absolute", // child
     top: 60, // position where you want
     left: 80,
@@ -37,6 +33,7 @@ const styles = StyleSheet.create({
   },
   welcometext: {
     color: colors.lightWhite,
+    fontFamily: font.gloria,
     position: "absolute", // child
     top: 16, // position where you want
     left: 110,
