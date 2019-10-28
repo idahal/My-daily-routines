@@ -12,7 +12,8 @@ import {
 import { firestore } from "../.././config/Firebase";
 import TimePicker from "react-native-simple-time-picker";
 import colors from "../constants/Colors";
-import CustomText from "../components/CustomText";
+import font from "../constants/Fonts";
+import MainButton from "../components/MainButton";
 
 class AddRoutine extends React.Component {
   state = { content: "", selectedHours: "", selectedMinutes: "" };
@@ -40,36 +41,32 @@ class AddRoutine extends React.Component {
     const { content, selectedHours, selectedMinutes } = this.state;
 
     return (
-      <View>
-        <Text style={styles.text}>
-          <CustomText type="regular">Namn på rutinen</CustomText>
-        </Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Namn på rutinen:</Text>
 
         <TextInput
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Namn"
+          placeholder="Skriv namnet"
           onChangeText={content => this.setState({ content })}
           value={content}
         />
-        <Text style={styles.text}>
-          <CustomText type="regular">
-            Vilken tid på klockan ska du vara klar:
-          </CustomText>
-        </Text>
+        <Text style={styles.text}>Vilken tid på klockan ska du vara klar:</Text>
         {/* <Text>
           {selectedHours}:{selectedMinutes}
         </Text> */}
-        <TimePicker
-          selectedHours={selectedHours}
-          selectedMinutes={selectedMinutes}
-          value={(selectedHours, selectedMinutes)}
-          onChange={(hours, minutes) =>
-            this.setState({ selectedHours: hours, selectedMinutes: minutes })
-          }
-        />
-
-        <Button title="Add routine" onPress={this.handleChange}></Button>
+        <View style={styles.timeInput}>
+          <TimePicker
+            selectedHours={selectedHours}
+            selectedMinutes={selectedMinutes}
+            value={(selectedHours, selectedMinutes)}
+            onChange={(hours, minutes) =>
+              this.setState({ selectedHours: hours, selectedMinutes: minutes })
+            }
+          />
+        </View>
+        <MainButton text="Spara" onPress={this.handleChange} />
+        {/* <Button title="Add routine" onPress={this.handleChange}></Button> */}
       </View>
     );
   }
@@ -77,35 +74,30 @@ class AddRoutine extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: colors.lightWhite
+    width: "100%",
+    marginLeft: 16
   },
-  button: {
-    marginTop: 30,
-    marginBottom: 20,
-    paddingVertical: 5,
-    alignItems: "center",
-    backgroundColor: colors.button,
-    borderRadius: 0,
-    width: 200
-  },
-  buttonText: {
-    color: colors.lightWhite
-  },
-
   textInput: {
     height: 40,
-    width: 350,
-    borderColor: "gray",
+    width: 230,
+    borderColor: colors.black,
     borderWidth: 1,
-    marginTop: 3
+    marginTop: 16,
+    fontFamily: font.italic,
+    paddingLeft: 5,
+    color: colors.dark
+  },
+  timeInput: {
+    height: 40,
+    width: 150,
+    marginTop: 16,
+    fontFamily: font.italic
   },
   text: {
     color: colors.black,
     marginTop: 16,
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: font.regular
   }
 });
 export default AddRoutine;

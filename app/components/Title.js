@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     position: "absolute", // child
     top: 25, // position where you want
     right: 16,
-    borderRadius: "50%",
+    borderRadius: 50,
     backgroundColor: colors.lightWhite
   },
   welcometext: {

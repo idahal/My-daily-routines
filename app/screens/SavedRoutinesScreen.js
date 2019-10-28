@@ -3,8 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { firestore } from "../.././config/Firebase";
 import Routines from ".././components/Routines";
 import Title from ".././components/Title";
-import Arrow from ".././icons/Arrow";
-
+import colors from ".././constants/Colors";
 import { collectIdsAndDocs } from "../.././config/utilities";
 
 class SavedRoutineScreen extends React.Component {
@@ -29,7 +28,15 @@ class SavedRoutineScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Title title={"Mina\nsparade rutiner"} text={<Arrow></Arrow>} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            this.props.navigation.navigate("HomeScreen");
+          }}
+        >
+          <Text>HEM</Text>
+        </TouchableOpacity>
+        <Title title={"Mina\nsparade rutiner"} text={"Sparat!"} />
 
         <Routines routines={routines} />
       </View>
@@ -42,7 +49,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "yellow"
+    backgroundColor: colors.lightWhite
+  },
+  button: {
+    marginTop: 20
   }
 });
 

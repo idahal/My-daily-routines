@@ -18,11 +18,20 @@ import Title from ".././components/Title";
 
 const CreateRoutineScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
       <AddRoutine />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    backgroundColor: colors.lightWhite
+  }
+});
 
 export default CreateRoutineScreen;
