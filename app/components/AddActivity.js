@@ -10,7 +10,7 @@ import {
   ScrollView,
   Button
 } from "react-native";
-import { firestore } from "../.././config/Firebase";
+import { firestore } from "../../config/firebase";
 import colors from "../constants/Colors";
 // import CustomText from "../components/CustomText";
 

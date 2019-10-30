@@ -1,6 +1,8 @@
 import React from "react";
 import * as Font from "expo-font";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { AuthProvider } from "./config/auth";
+
 // import Text from "./app/components/CustomText";
 // import colors from "./app/constants/Colors";
 
@@ -28,11 +30,13 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.fontLoaded ? (
-          <SwitchNavigator />
-        ) : (
-          <ActivityIndicator size="large" />
-        )}
+        <AuthProvider>
+          {this.state.fontLoaded ? (
+            <SwitchNavigator />
+          ) : (
+            <ActivityIndicator size="large" />
+          )}
+        </AuthProvider>
       </View>
     );
   }

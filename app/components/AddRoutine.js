@@ -9,7 +9,7 @@ import {
   Button,
   Text
 } from "react-native";
-import { firestore } from "../.././config/Firebase";
+import { firestore } from "../../config/firebase";
 import TimePicker from "react-native-simple-time-picker";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
@@ -65,7 +65,7 @@ class AddRoutine extends React.Component {
             }
           />
         </View>
-        <MainButton text="Spara" onPress={this.handleChange} />
+        <MainButton text="Gå vidare" onPress={this.handleChange} />
         {/* <Button title="Add routine" onPress={this.handleChange}></Button> */}
       </View>
     );

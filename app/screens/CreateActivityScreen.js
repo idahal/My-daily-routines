@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { firestore } from "../.././config/Firebase";
+import { firestore } from "../../config/firebase";
 import Activities from ".././components/Activities";
 import { collectIdsAndDocs } from "../.././config/utilities";
 

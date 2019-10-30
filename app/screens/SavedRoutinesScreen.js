@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { firestore } from "../.././config/Firebase";
+import { firestore } from "../../config/firebase";
 import Routines from ".././components/Routines";
 import Title from ".././components/Title";
 import colors from ".././constants/Colors";
+import Heart from ".././icons/Heart";
+
 import { collectIdsAndDocs } from "../.././config/utilities";
 
 class SavedRoutineScreen extends React.Component {
@@ -36,8 +38,8 @@ class SavedRoutineScreen extends React.Component {
         >
           <Text>HEM</Text>
         </TouchableOpacity>
-        <Title title={"Mina\nsparade rutiner"} text={"Sparat!"} />
-
+        <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
+        {/* <Heart></Heart> */}
         <Routines routines={routines} />
       </View>
     );

@@ -1,8 +1,8 @@
-import firebase from "firebase/app";
+import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import "firebase/storage";
 
+// Import keys from .env-file
 import {
   API_KEY,
   AUTH_DOMAIN,
@@ -12,7 +12,7 @@ import {
   APP_ID
 } from "react-native-dotenv";
 
-const firebaseConfig = {
+const config = {
   apiKey: API_KEY,
   authDomain: AUTH_DOMAIN,
   databaseURL: DATABASE_URL,
@@ -23,45 +23,73 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const Firebase = app.initializeApp(config);
+export default Firebase;
 
-export const firestore = firebase.firestore();
-export const auth = firebase.auth();
-export const storage = firebase.storage();
+// import firebase from "firebase/app";
+// import "firebase/auth";
+// import "firebase/firestore";
+// import "firebase/storage";
 
-window.firebase = firebase;
+// import {
+//   API_KEY,
+//   AUTH_DOMAIN,
+//   DATABASE_URL,
+//   PROJECT_ID,
+//   MESSAGE_SENDER_ID,
+//   APP_ID
+// } from "react-native-dotenv";
 
-// create users collection
-export const createUsersDocument = async user => {
-  if (!user) return;
+// const firebaseConfig = {
+//   apiKey: API_KEY,
+//   authDomain: AUTH_DOMAIN,
+//   databaseURL: DATABASE_URL,
+//   projectId: PROJECT_ID,
+//   storageBucket: "",
+//   messagingSenderId: MESSAGE_SENDER_ID,
+//   appId: APP_ID
+// };
 
-  const userRef = firestore.doc(`users/${user.uid}`);
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
 
-  const snapshot = await userRef.get();
+// export const firestore = firebase.firestore();
+// export const auth = firebase.auth();
+// export const storage = firebase.storage();
 
-  if (!snapshot.exists) {
-    const { email } = user;
-    const createdAt = new Date();
-    try {
-      await userRef.set({
-        email,
-        createdAt
-      });
-    } catch (error) {
-      console.error("Error creating user", error.message);
-    }
-  }
+// window.firebase = firebase;
 
-  return getUserDocument(user.uid);
-};
+// // create users collection
+// export const createUsersDocument = async user => {
+//   if (!user) return;
 
-export const getUserDocument = async uid => {
-  if (!uid) return null;
-  try {
-    return firestore.collection("users").doc(uid);
-  } catch (error) {
-    console.error("Error fetching user", error.message);
-  }
-};
+//   const userRef = firestore.doc(`users/${user.uid}`);
 
-export default firebase;
+//   const snapshot = await userRef.get();
+
+//   if (!snapshot.exists) {
+//     const { email } = user;
+//     const createdAt = new Date();
+//     try {
+//       await userRef.set({
+//         email,
+//         createdAt
+//       });
+//     } catch (error) {
+//       console.error("Error creating user", error.message);
+//     }
+//   }
+
+//   return getUserDocument(user.uid);
+// };
+
+// export const getUserDocument = async uid => {
+//   if (!uid) return null;
+//   try {
+//     return firestore.collection("users").doc(uid);
+//   } catch (error) {
+//     console.error("Error fetching user", error.message);
+//   }
+// };
+
+// export default firebase;
