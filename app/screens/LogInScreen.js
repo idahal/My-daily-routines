@@ -47,6 +47,7 @@ const LogInScreen = props => {
       <View>
         {authUser ? (
           <>
+            return {navigation.navigate("HomeScreen")}
             <Text>Du är inloggad</Text>
             <Button title="Logga ut" type="submit" onPress={logout} />
           </>
@@ -75,7 +76,7 @@ const LogInScreen = props => {
           </>
         )}
       </View>
-      {userError && <p>{userError.message}</p>}
+      {userError && <Text>{userError.message}</Text>}
     </View>
   );
 };
