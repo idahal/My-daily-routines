@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import app from "../../config/firebase";
 import { useAuth } from "../../config/auth";
 import {
@@ -10,79 +10,56 @@ import {
   Image,
   TextInput
 } from "react-native";
-// import { firestore } from "../../config/firebase";
-// import Activities from ".././components/Activities";
-// import { collectIdsAndDocs } from "../.././config/utilities";
+import AddActivity from "../components/AddActivity";
+import colors from ".././constants/Colors";
 
-const AddActivity = ({ addNewItem }) => {
+const CreateActivityScreen = props => {
+  const { navigation } = props;
+
   const db = app.firestore();
-  const [activityName, setActivityName] = useState("");
-  const [minutes, setMinutes] = useState("");
+  const [activity, setActivity] = useState([]);
 
   // Get user if logged in
   const { authUser } = useAuth();
 
-  const resetForm = () => {
-    setActivityName("");
-    setMinutes("");
-  };
+  useEffect(() => {
+    const tempArray = [];
 
-  const isInvalid = activityName === "" || minutes === "";
-
-  const addNewActivity = async e => {
-    e.preventDefault();
-
-    if (authUser) {
-      // Add data to firebase:
-      db.collection("Activities")
-        .doc(activityName)
-        .set({
-          name: activityName,
-          description: minutes,
-          addedByUserUid: authUser.uid
-        })
-        .then(function() {
-          console.log("Yes, it worked!");
-          resetForm();
-          addNewItem({
-            name: activityName,
-            description: minutes,
-            addedByUserUid: authUser.uid,
-            id: activityName
-          });
-        })
-        .catch(function(error) {
-          console.error("Error writing document: ", error);
+    db.collection("Activities")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          tempArray.push({ id: doc.id, ...doc.data() });
         });
-    }
+        setActivity(tempArray);
+      });
+  }, []);
+
+  const addNewActivity = object => {
+    setActivity([...activity, object]);
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Min aktiviteter</Text>
-      <TextInput
-        style={styles.textInput}
-        type="text"
-        name="activityName"
-        id="activityName"
-        placeholder="Namn"
-        value={activityName}
-        onChange={e => setActivityName(e.target.value)}
-      />
-      <TextInput
-        style={styles.textInput}
-        type="text"
-        name="minutes"
-        id="minutes"
-        placeholder="Antal minuter"
-        value={minutes}
-        onChange={e => setMinutes(e.target.value)}
-      />
+    <View>
       <Button
-        title="Spara"
-        onPress={addNewActivity}
-        disabled={isInvalid}
+        title="Hem"
+        style={styles.button}
+        onPress={() => navigation.navigate("HomeScreen")}
       ></Button>
+      <Text>Mina aktiviteter</Text>
+      {activity.map(item => (
+        <View key={item.id}>
+          <Text>{item.name}</Text>
+          <Text>{item.description}</Text>
+          {/* <Text>{item.addedByUserUid}</Text> */}
+        </View>
+      ))}
+
+      {authUser ? (
+        <AddActivity addNewActivity={addNewActivity} />
+      ) : (
+        <Text>Du är inte inloggad</Text>
+      )}
     </View>
   );
 };
@@ -92,11 +69,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "yellow"
+    backgroundColor: colors.lightWhite
+  },
+  button: {
+    marginTop: 20,
+    color: colors.dark
   }
 });
-
-export default AddActivity;
+export default CreateActivityScreen;
 
 // import React from "react";
 // import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
