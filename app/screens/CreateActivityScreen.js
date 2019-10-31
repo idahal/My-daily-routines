@@ -24,8 +24,9 @@ const CreateActivityScreen = props => {
 
   useEffect(() => {
     const tempArray = [];
-
-    db.collection("Activities")
+    db.collection("Routines")
+      .doc("Åka träna")
+      .collection("Activity")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {

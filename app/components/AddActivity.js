@@ -10,11 +10,15 @@ import {
   Image,
   TextInput
 } from "react-native";
+import colors from "../constants/Colors";
+import CustomText from "../components/CustomText";
 
 const AddActivity = ({ addNewItem }) => {
   const db = app.firestore();
   const [activityName, setActivityName] = useState("");
   const [minutes, setMinutes] = useState("");
+
+  const number = parseInt(minutes);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -31,11 +35,13 @@ const AddActivity = ({ addNewItem }) => {
 
     if (authUser) {
       // Add data to firebase:
-      db.collection("Activities")
+      db.collection("Routines")
+        .doc("Åka träna")
+        .collection("Activity")
         .doc(activityName)
         .set({
           name: activityName,
-          description: minutes,
+          description: number,
           addedByUserUid: authUser.uid
         })
         .then(function() {
@@ -72,6 +78,7 @@ const AddActivity = ({ addNewItem }) => {
         name="minutes"
         id="minutes"
         placeholder="Antal minuter"
+        keyboardType={"numeric"} // This prop help to open numeric keyboard
         value={minutes}
         onChange={e => setMinutes(e.target.value)}
       />
@@ -89,7 +96,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "yellow"
+    backgroundColor: colors.lightWhite
+  },
+  button: {
+    marginTop: 30,
+    marginBottom: 20,
+    paddingVertical: 5,
+    alignItems: "center",
+    backgroundColor: colors.button,
+    borderRadius: 0,
+    width: 200
+  },
+  buttonText: {
+    color: colors.lightWhite
+  },
+
+  textInput: {
+    height: 40,
+    width: 350,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginTop: 3
   }
 });
 
