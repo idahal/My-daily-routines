@@ -1,46 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import * as Font from "expo-font";
-import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { AuthProvider } from "./config/auth";
 
-// import Text from "./app/components/CustomText";
-// import colors from "./app/constants/Colors";
-
 import SwitchNavigator from "./app/navigation/Navigation";
+console.disableYellowBox = true;
 
-export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      fontLoaded: false
-    };
-  }
+function App() {
+  const [fontLoaded, setLoaded] = useState(false);
 
-  async componentDidMount() {
+  useEffect(() => {
+    loadFonts();
+  }, []);
+
+  const loadFonts = async () => {
     await Font.loadAsync({
       "Raleway-ExtraBold": require("./assets/fonts/Raleway-ExtraBold.ttf"),
       "Raleway-LightItalic": require("./assets/fonts/Raleway-LightItalic.ttf"),
       "Raleway-Regular": require("./assets/fonts/Raleway-Regular.ttf"),
       "GloriaHallelujah-Regular": require("./assets/fonts/GloriaHallelujah-Regular.ttf")
     });
+    setLoaded(true);
+  };
 
-    this.setState({ fontLoaded: true });
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <AuthProvider>
-          {this.state.fontLoaded ? (
-            <SwitchNavigator />
-          ) : (
-            <ActivityIndicator size="large" />
-          )}
-        </AuthProvider>
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <AuthProvider>{fontLoaded && <SwitchNavigator />}</AuthProvider>
+    </View>
+  );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
