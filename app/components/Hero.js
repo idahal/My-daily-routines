@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
+import { Dimensions } from "react-native";
+
+var width = Dimensions.get("window").width; //full width
+// var height = Dimensions.get("window").height; //full height
 
 const Hero = () => {
   return (
@@ -19,7 +23,7 @@ const Hero = () => {
 
 const styles = StyleSheet.create({
   welcomeImage: {
-    width: "100%",
+    width: width,
     height: 200,
     position: "relative"
   },
