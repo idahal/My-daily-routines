@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput
-} from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import AddActivity from "../components/AddActivity";
 import colors from "../constants/Colors";
 

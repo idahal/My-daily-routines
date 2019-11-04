@@ -10,7 +10,7 @@ const LogInScreen = props => {
   const [userError, setUserError] = useState(null);
   // Do something while loading
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();

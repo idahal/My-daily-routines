@@ -1,5 +1,5 @@
 import App from "./App.js";
-import React from "react";
+// import React from "react";
 import { AppRegistry } from "react-native";
 
 // register the app

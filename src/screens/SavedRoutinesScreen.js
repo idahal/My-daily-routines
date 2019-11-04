@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
-import { useAuth } from "../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput
-} from "react-native";
+// import { useAuth } from "../config/auth";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
-import AddRoutine from "../components/AddRoutine";
 import Title from "../components/Title";
 
 const SavedRoutineScreen = props => {

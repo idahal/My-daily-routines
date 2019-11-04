@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput
-} from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import MainButton from "./MainButton";

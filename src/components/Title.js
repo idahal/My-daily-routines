@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
@@ -49,8 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: font.gloria,
     width: "70%",
-    transform: [{ rotate: "5deg" }],
-    color: colors.black
+    transform: [{ rotate: "5deg" }]
   }
 });
 export default Title;
