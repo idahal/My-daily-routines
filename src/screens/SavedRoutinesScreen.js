@@ -29,7 +29,7 @@ const SavedRoutineScreen = props => {
   useEffect(() => {
     const tempArray = [];
 
-    db.collection("Routines")
+    db.collection("routines")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -37,7 +37,7 @@ const SavedRoutineScreen = props => {
         });
         setRoutine(tempArray);
       });
-  }, []);
+  }, [db]);
 
   // const addNewRoutine = object => {
   //   setRoutine([...routine, object]);

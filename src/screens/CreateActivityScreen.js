@@ -34,7 +34,7 @@ const CreateActivityScreen = props => {
         });
         setActivity(tempArray);
       });
-  }, []);
+  }, [db]);
 
   const addNewActivity = object => {
     setActivity([...activity, object]);
