@@ -1,4 +1,6 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+// import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator } from "@react-navigation/core";
+import { createBrowserApp } from "@react-navigation/web";
 import HomeScreen from "../screens/HomeScreen";
 import LogInScreen from "../screens/LogInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
@@ -32,4 +34,4 @@ const SwitchNavigator = createSwitchNavigator(
   }
 );
 
-export default createAppContainer(SwitchNavigator);
+export default createBrowserApp(SwitchNavigator);

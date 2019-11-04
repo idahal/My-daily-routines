@@ -3,16 +3,14 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import { Dimensions } from "react-native";
+import heroImage from "../assets/images/black.jpg";
 
 var width = Dimensions.get("window").width; //full width
 // var height = Dimensions.get("window").height; //full height
 
 const Hero = () => {
   return (
-    <ImageBackground
-      style={styles.welcomeImage}
-      source={require("../.././assets/images/black.jpg")}
-    >
+    <ImageBackground style={styles.welcomeImage} source={heroImage}>
       <Text style={styles.welcometext}>Min app för:</Text>
       <Text style={styles.titletext}>
         Mina{"\n"}rutiner{"\n"}i vardagen

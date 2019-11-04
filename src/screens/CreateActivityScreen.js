@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import app from "../../config/firebase";
-import { useAuth } from "../../config/auth";
+import app from "../config/firebase";
+import { useAuth } from "../config/auth";
 import {
   Button,
   StyleSheet,
@@ -10,37 +10,35 @@ import {
   Image,
   TextInput
 } from "react-native";
-
-import TimePicker from "react-native-simple-time-picker";
+import AddActivity from "../components/AddActivity";
 import colors from "../constants/Colors";
-import AddRoutine from "../components/AddRoutine";
-import Title from ".././components/Title";
 
-const SavedRoutineScreen = props => {
+const CreateActivityScreen = props => {
   const { navigation } = props;
 
   const db = app.firestore();
-  const [routine, setRoutine] = useState([]);
+  const [activity, setActivity] = useState([]);
 
   // Get user if logged in
-  // const { authUser } = useAuth();
+  const { authUser } = useAuth();
 
   useEffect(() => {
     const tempArray = [];
-
     db.collection("Routines")
+      .doc("Åka träna")
+      .collection("Activity")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           tempArray.push({ id: doc.id, ...doc.data() });
         });
-        setRoutine(tempArray);
+        setActivity(tempArray);
       });
   }, []);
 
-  // const addNewRoutine = object => {
-  //   setRoutine([...routine, object]);
-  // };
+  const addNewActivity = object => {
+    setActivity([...activity, object]);
+  };
 
   return (
     <View>
@@ -49,14 +47,21 @@ const SavedRoutineScreen = props => {
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
       ></Button>
-      <Text>Mina rutiner</Text>
-      {routine.map(item => (
+      <Text>Mina aktiviteter</Text>
+
+      {activity.map(item => (
         <View key={item.id}>
           <Text>{item.name}</Text>
           <Text>{item.description}</Text>
           {/* <Text>{item.addedByUserUid}</Text> */}
         </View>
       ))}
+
+      {authUser ? (
+        <AddActivity addNewActivity={addNewActivity} />
+      ) : (
+        <Text>Du är inte inloggad</Text>
+      )}
     </View>
   );
 };
@@ -73,29 +78,27 @@ const styles = StyleSheet.create({
     color: colors.dark
   }
 });
-export default SavedRoutineScreen;
+export default CreateActivityScreen;
 
 // import React from "react";
 // import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-// import { firestore } from "../../config/firebase";
-// import Routines from ".././components/Routines";
-// import Title from ".././components/Title";
-// import colors from ".././constants/Colors";
-// import Heart from ".././icons/Heart";
-
+// import { firestore } from "../config/firebase";
+// import Activities from ".././components/Activities";
 // import { collectIdsAndDocs } from "../.././config/utilities";
 
-// class SavedRoutineScreen extends React.Component {
+// class CreateActivityScreen extends React.Component {
 //   state = {
-//     routines: []
+//     activities: []
 //   };
 //   unsubscribe = null;
 
 //   componentDidMount = async () => {
-//     this.unsubscribe = firestore.collection("routines").onSnapshot(snapshot => {
-//       const routines = snapshot.docs.map(collectIdsAndDocs);
-//       this.setState({ routines });
-//     });
+//     this.unsubscribe = firestore
+//       .collection("activities")
+//       .onSnapshot(snapshot => {
+//         const activities = snapshot.docs.map(collectIdsAndDocs);
+//         this.setState({ activities });
+//       });
 //   };
 
 //   componentWillUnmount = () => {
@@ -103,21 +106,12 @@ export default SavedRoutineScreen;
 //   };
 
 //   render() {
-//     const { routines } = this.state;
+//     const { activities } = this.state;
 
 //     return (
 //       <View style={styles.container}>
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => {
-//             this.props.navigation.navigate("HomeScreen");
-//           }}
-//         >
-//           <Text>HEM</Text>
-//         </TouchableOpacity>
-//         <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
-//         {/* <Heart></Heart> */}
-//         <Routines routines={routines} />
+//         <Text>Hejsan</Text>
+//         <Activities activities={activities} />
 //       </View>
 //     );
 //   }
@@ -128,11 +122,8 @@ export default SavedRoutineScreen;
 //     flex: 1,
 //     justifyContent: "flex-start",
 //     alignItems: "center",
-//     backgroundColor: colors.lightWhite
-//   },
-//   button: {
-//     marginTop: 20
+//     backgroundColor: "yellow"
 //   }
 // });
 
-// export default SavedRoutineScreen;
+// export default CreateActivityScreen;

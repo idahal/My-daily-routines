@@ -6,7 +6,7 @@ import font from "../constants/Fonts";
 const LogoutButton = props => {
   const { text, onPress } = props;
   return (
-    <TouchableOpacity style={styles.button} onPress={() => onPress()}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

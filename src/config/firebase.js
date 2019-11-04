@@ -3,23 +3,23 @@ import "firebase/auth";
 import "firebase/firestore";
 
 // Import keys from .env-file
-import {
-  API_KEY,
-  AUTH_DOMAIN,
-  DATABASE_URL,
-  PROJECT_ID,
-  MESSAGE_SENDER_ID,
-  APP_ID
-} from "react-native-dotenv";
+// import {
+//   API_KEY,
+//   AUTH_DOMAIN,
+//   DATABASE_URL,
+//   PROJECT_ID,
+//   MESSAGE_SENDER_ID,
+//   APP_ID
+// } from "react-native-dotenv";
 
 const config = {
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  databaseURL: DATABASE_URL,
-  projectId: PROJECT_ID,
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: "",
-  messagingSenderId: MESSAGE_SENDER_ID,
-  appId: APP_ID
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

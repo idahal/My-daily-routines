@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
-class Title extends Component {
-  render() {
-    const { title, text } = this.props;
-    return (
-      <View style={styles.topview}>
-        <Text style={styles.titletext}>{title}</Text>
-        <View style={styles.circle}>
-          <Text style={styles.welcometext}>{text}</Text>
-        </View>
+const Title = props => {
+  const { title, text } = props;
+  return (
+    <View style={styles.topview}>
+      <Text style={styles.titletext}>{title}</Text>
+      <View style={styles.circle}>
+        <Text style={styles.welcometext}>{text}</Text>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   topview: {
