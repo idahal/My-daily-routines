@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, Button, View } from "react-native";
-import { firestore } from "../../config/firebase";
+import { firestore } from "../config/firebase";
 
 const Activity = ({ id, content, number }) => {
   const Ref = firestore.doc(`activities/${id}`);

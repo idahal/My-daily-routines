@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
-import app from "../../config/firebase";
-import { useAuth } from "../../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput
-} from "react-native";
+import React, { useState } from "react";
+// import app from "../config/firebase";
+import { useAuth } from "../config/auth";
+import { Button, StyleSheet, Text, View } from "react-native";
 
-import TimePicker from "react-native-simple-time-picker";
 import colors from "../constants/Colors";
 import AddRoutine from "../components/AddRoutine";
-import Title from ".././components/Title";
+import Title from "../components/Title";
+import MainButton from "../components/MainButton";
 
 const CreateRoutineScreen = props => {
   const { navigation } = props;
@@ -24,19 +16,6 @@ const CreateRoutineScreen = props => {
 
   // Get user if logged in
   const { authUser } = useAuth();
-
-  // useEffect(() => {
-  //   const tempArray = [];
-
-  //   db.collection("Routines")
-  //     .get()
-  //     .then(querySnapshot => {
-  //       querySnapshot.forEach(doc => {
-  //         tempArray.push({ id: doc.id, ...doc.data() });
-  //       });
-  //       setRoutine(tempArray);
-  //     });
-  // }, []);
 
   const addNewRoutine = object => {
     setRoutine([...routine, object]);
@@ -52,7 +31,7 @@ const CreateRoutineScreen = props => {
       {authUser ? (
         <View style={styles.container}>
           <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
-          <AddRoutine addNewRoutine={addNewRoutine} />
+          <AddRoutine addNewRoutine={addNewRoutine} navigation={navigation} />
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>

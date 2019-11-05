@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import app from "../../config/firebase";
-import { useAuth } from "../../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput
-} from "react-native";
+import app from "../config/firebase";
+// import { useAuth } from "../config/auth";
+import { Button, StyleSheet, Text, View } from "react-native";
 
-import TimePicker from "react-native-simple-time-picker";
 import colors from "../constants/Colors";
-import AddRoutine from "../components/AddRoutine";
-import Title from ".././components/Title";
+import font from "../constants/Fonts";
+
+import Title from "../components/Title";
 
 const SavedRoutineScreen = props => {
   const { navigation } = props;
@@ -28,7 +20,7 @@ const SavedRoutineScreen = props => {
   useEffect(() => {
     const tempArray = [];
 
-    db.collection("Routines")
+    db.collection("routines")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -36,7 +28,7 @@ const SavedRoutineScreen = props => {
         });
         setRoutine(tempArray);
       });
-  }, []);
+  }, [db]);
 
   // const addNewRoutine = object => {
   //   setRoutine([...routine, object]);
@@ -49,11 +41,12 @@ const SavedRoutineScreen = props => {
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
       ></Button>
+      <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
       <Text>Mina rutiner</Text>
       {routine.map(item => (
-        <View key={item.id}>
-          <Text>{item.name}</Text>
-          <Text>{item.description}</Text>
+        <View key={item.id} style={styles.routine}>
+          <Text style={styles.infotext}>{item.name}</Text>
+          <Text style={styles.infotext}>{item.description}</Text>
           {/* <Text>{item.addedByUserUid}</Text> */}
         </View>
       ))}
@@ -71,13 +64,25 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     color: colors.dark
+  },
+  routine: {
+    backgroundColor: colors.lightWhite,
+    borderWidth: 1,
+    borderColor: colors.dark,
+    width: 343,
+    height: 100,
+    marginTop: 16
+  },
+  infotext: {
+    fontFamily: font.extrabold,
+    fontSize: 18
   }
 });
 export default SavedRoutineScreen;
 
 // import React from "react";
 // import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-// import { firestore } from "../../config/firebase";
+// import { firestore } from "../config/firebase";
 // import Routines from ".././components/Routines";
 // import Title from ".././components/Title";
 // import colors from ".././constants/Colors";

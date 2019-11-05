@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
-import firebase from "../../config/firebase";
-import { useAuth } from "../.././config/auth";
+import firebase from "../config/firebase";
+import { useAuth } from "../config/auth";
 
 const LogInScreen = props => {
   const { navigation } = props;
@@ -10,7 +10,7 @@ const LogInScreen = props => {
   const [userError, setUserError] = useState(null);
   // Do something while loading
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -47,7 +47,7 @@ const LogInScreen = props => {
       <View>
         {authUser ? (
           <>
-            return {navigation.navigate("HomeScreen")}
+            {navigation.navigate("HomeScreen")}
             <Text>Du är inloggad</Text>
             <Button title="Logga ut" type="submit" onPress={logout} />
           </>
@@ -97,70 +97,3 @@ const styles = StyleSheet.create({
 });
 
 export default LogInScreen;
-
-// import React from "react";
-// import { StyleSheet, Text, TextInput, View, Button } from "react-native";
-// import firebase from "../.././config/Firebase";
-
-// class LogInScreen extends React.Component {
-//   componentDidMount() {
-//     firebase.auth().onAuthStateChanged(user => {
-//       this.props.navigation.navigate(user ? "HomeScreen" : "LogInScreen");
-//     });
-//   }
-//   state = { email: "", password: "", errorMessage: null };
-//   handleLogin = () => {
-//     const { email, password } = this.state;
-//     firebase
-//       .auth()
-//       .signInWithEmailAndPassword(email, password)
-//       .then(() => this.props.navigation.navigate("HomeScreen"))
-//       .catch(error => this.setState({ errorMessage: error.message }));
-//   };
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Login</Text>
-//         {this.state.errorMessage && (
-//           <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
-//         )}
-//         <TextInput
-//           style={styles.textInput}
-//           autoCapitalize="none"
-//           placeholder="Email"
-//           onChangeText={email => this.setState({ email })}
-//           value={this.state.email}
-//         />
-//         <TextInput
-//           secureTextEntry
-//           style={styles.textInput}
-//           autoCapitalize="none"
-//           placeholder="Password"
-//           onChangeText={password => this.setState({ password })}
-//           value={this.state.password}
-//         />
-//         <Button title="Login" onPress={this.handleLogin} />
-//         <Button
-//           title="Don't have an account? Sign Up"
-//           onPress={() => this.props.navigation.navigate("SignUpScreen")}
-//         />
-//       </View>
-//     );
-//   }
-// }
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center"
-//   },
-//   textInput: {
-//     height: 40,
-//     width: "90%",
-//     borderColor: "gray",
-//     borderWidth: 1,
-//     marginTop: 8
-//   }
-// });
-
-// export default LogInScreen;

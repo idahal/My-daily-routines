@@ -1,15 +1,7 @@
 import React from "react";
-import { useAuth } from "../.././config/auth";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  Button,
-  ImageBackground
-} from "react-native";
-// import firebase, { firestore } from "../.././config/Firebase";
+import { useAuth } from "../config/auth";
+import { StyleSheet, Text, View } from "react-native";
+import firebase from "../config/firebase";
 import colors from "../constants/Colors";
 import Hero from "../components/Hero";
 import MenuButton from "../components/MenuButton";
@@ -23,6 +15,7 @@ const HomeScreen = props => {
   };
 
   const { authUser } = useAuth();
+
   return (
     <View style={styles.container}>
       <Text>Startsidan</Text>

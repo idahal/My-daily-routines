@@ -1,21 +1,19 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
-class Title extends Component {
-  render() {
-    const { title, text } = this.props;
-    return (
-      <View style={styles.topview}>
-        <Text style={styles.titletext}>{title}</Text>
-        <View style={styles.circle}>
-          <Text style={styles.welcometext}>{text}</Text>
-        </View>
+const Title = props => {
+  const { title, text } = props;
+  return (
+    <View style={styles.topview}>
+      <Text style={styles.titletext}>{title}</Text>
+      <View style={styles.circle}>
+        <Text style={styles.welcometext}>{text}</Text>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   topview: {
@@ -51,8 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: font.gloria,
     width: "70%",
-    transform: [{ rotate: "5deg" }],
-    color: colors.black
+    transform: [{ rotate: "5deg" }]
   }
 });
 export default Title;
