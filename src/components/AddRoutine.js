@@ -6,23 +6,17 @@ import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import MainButton from "./MainButton";
 
-const AddRoutine = () => {
-  // const { navigation } = props;
+const AddRoutine = props => {
+  const { navigation } = props;
 
   const db = app.firestore();
   const [routineName, setRoutineName] = useState("");
-  // const [time, setTime] = useState("");
-  // const [selectedHours, setSelectedHours] = useState("");
-  // const [selectedMinutes, setSelectedMinutes] = useState("");
 
   // Get user if logged in
   const { authUser } = useAuth();
 
   // const resetForm = () => {
   //   setRoutineName("");
-  //   setTime("");
-  //   setSelectedHours("");
-  //   setSelectedMinutes("");
   // };
 
   const isInvalid = routineName === "";
@@ -33,18 +27,18 @@ const AddRoutine = () => {
     if (authUser) {
       // Add data to firebase:
       db.collection("routines")
-        .doc()
+        .doc(authUser.uid)
         .set({
           name: routineName,
           // description: time,
           addedByUserUid: authUser.uid
         })
         .then(function() {
-          console.log("Yes, it worked!");
-          // navigation.navigate("AddActivityScreen", {
-          //   name: routineName,
-          //   addedByUserUid: authUser.uid
-          // });
+          console.log({ routineName });
+          navigation.navigate("CreateActivityScreen", {
+            name: routineName,
+            addedByUserUid: authUser.uid
+          });
 
           // resetForm();
         })
@@ -68,20 +62,11 @@ const AddRoutine = () => {
       />
       <Text style={styles.text}>Vilken tid på klockan ska du vara klar:</Text>
 
-      {/* <Input
+      {/* <TextInput
         style={styles.textInput}
-        id="time"
+        type="datetime-local"
         placeholder="00:00"
-        type="time"
-        value={time}
-        onChange={e => setTime(e.target.value)}
       /> */}
-      {/* <TimePicker
-          selectedHours={selectedHours}
-          selectedMinutes={selectedMinutes}
-          value={(selectedHours, selectedMinutes)}
-          onChange={e => setSelectedHours(e.target.value)}
-        /> */}
 
       <MainButton text="Spara" onPress={addNewRoutine} disabled={isInvalid} />
     </View>

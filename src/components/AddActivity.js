@@ -4,7 +4,7 @@ import { useAuth } from "../config/auth";
 import { Button, StyleSheet, Text, View, TextInput } from "react-native";
 import colors from "../constants/Colors";
 
-const AddActivity = () => {
+const AddActivity = props => {
   const db = app.firestore();
 
   const [activityName, setActivityName] = useState("");
@@ -28,7 +28,7 @@ const AddActivity = () => {
     if (authUser) {
       // Add data to firebase:
       db.collection("routines")
-        .doc("oFC3EUrVI4uVTSGJQGLO")
+        .doc(props.docName)
         .collection("activity")
         .doc()
         .set({

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   titletext: {
     color: colors.lightWhite,
-    fontFamily: font.extrabold,
+    fontFamily: "Raleway",
     position: "absolute", // child
     top: 60, // position where you want
     left: 80,

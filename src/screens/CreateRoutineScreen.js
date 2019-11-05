@@ -31,16 +31,7 @@ const CreateRoutineScreen = props => {
       {authUser ? (
         <View style={styles.container}>
           <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
-          <AddRoutine addNewRoutine={addNewRoutine} />
-          <MainButton
-            text="Gå vidare"
-            onPress={() => {
-              navigation.navigate("AddActivity", {
-                name: "hej", //routineName,
-                addedByUserUid: authUser.uid
-              });
-            }}
-          />
+          <AddRoutine addNewRoutine={addNewRoutine} navigation={navigation} />
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>

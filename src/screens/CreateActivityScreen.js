@@ -13,12 +13,15 @@ const CreateActivityScreen = props => {
 
   // Get user if logged in
   const { authUser } = useAuth();
+  console.log(navigation.getParam("name"));
+
+  const docName = navigation.getParam("name");
 
   useEffect(() => {
     const tempArray = [];
-    db.collection("Routines")
-      .doc("Åka träna")
-      .collection("Activity")
+    db.collection("routines")
+      .doc()
+      .collection("activity")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -28,10 +31,6 @@ const CreateActivityScreen = props => {
       });
   }, [db]);
 
-  const addNewActivity = object => {
-    setActivity([...activity, object]);
-  };
-
   return (
     <View>
       <Button
@@ -40,7 +39,7 @@ const CreateActivityScreen = props => {
         onPress={() => navigation.navigate("HomeScreen")}
       ></Button>
       <Text>Mina aktiviteter</Text>
-
+      <Text>{docName}</Text>
       {activity.map(item => (
         <View key={item.id}>
           <Text>{item.name}</Text>
@@ -50,7 +49,7 @@ const CreateActivityScreen = props => {
       ))}
 
       {authUser ? (
-        <AddActivity addNewActivity={addNewActivity} />
+        <AddActivity docName={docName} />
       ) : (
         <Text>Du är inte inloggad</Text>
       )}
@@ -71,51 +70,3 @@ const styles = StyleSheet.create({
   }
 });
 export default CreateActivityScreen;
-
-// import React from "react";
-// import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-// import { firestore } from "../config/firebase";
-// import Activities from ".././components/Activities";
-// import { collectIdsAndDocs } from "../.././config/utilities";
-
-// class CreateActivityScreen extends React.Component {
-//   state = {
-//     activities: []
-//   };
-//   unsubscribe = null;
-
-//   componentDidMount = async () => {
-//     this.unsubscribe = firestore
-//       .collection("activities")
-//       .onSnapshot(snapshot => {
-//         const activities = snapshot.docs.map(collectIdsAndDocs);
-//         this.setState({ activities });
-//       });
-//   };
-
-//   componentWillUnmount = () => {
-//     this.unsubscribe();
-//   };
-
-//   render() {
-//     const { activities } = this.state;
-
-//     return (
-//       <View style={styles.container}>
-//         <Text>Hejsan</Text>
-//         <Activities activities={activities} />
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "flex-start",
-//     alignItems: "center",
-//     backgroundColor: "yellow"
-//   }
-// });
-
-// export default CreateActivityScreen;
