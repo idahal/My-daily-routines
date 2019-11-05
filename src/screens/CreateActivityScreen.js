@@ -20,7 +20,7 @@ const CreateActivityScreen = props => {
   useEffect(() => {
     const tempArray = [];
     db.collection("routines")
-      .doc()
+      .doc(docName)
       .collection("activity")
       .get()
       .then(querySnapshot => {
