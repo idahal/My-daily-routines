@@ -15,12 +15,18 @@ const CreateActivityScreen = props => {
   const { authUser } = useAuth();
   console.log(navigation.getParam("name"));
 
+  //Get params from addRoutine
   const docName = navigation.getParam("name");
+  const userId = navigation.getParam("addedByUserUid");
+  const collectionId = navigation.getParam("keyId");
 
   useEffect(() => {
     const tempArray = [];
+    // const routinesRef = db.collection("routines");
+
+    // routinesRef
     db.collection("routines")
-      .doc(docName)
+      .doc(collectionId)
       .collection("activity")
       .get()
       .then(querySnapshot => {
@@ -44,12 +50,15 @@ const CreateActivityScreen = props => {
         <View key={item.id}>
           <Text>{item.name}</Text>
           <Text>{item.description}</Text>
-          {/* <Text>{item.addedByUserUid}</Text> */}
         </View>
       ))}
 
       {authUser ? (
-        <AddActivity docName={docName} />
+        <AddActivity
+          docName={docName}
+          userId={userId}
+          collectionId={collectionId}
+        />
       ) : (
         <Text>Du är inte inloggad</Text>
       )}

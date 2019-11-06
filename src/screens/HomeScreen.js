@@ -42,10 +42,10 @@ const HomeScreen = props => {
             }}
           />
 
-          <LogoutButton text="Logga ut" onPress={logout} />
+          <LogoutButton text="Logga ut" onPress={() => logout()} />
         </View>
       ) : (
-        <Text>Du är inte inloggad</Text>
+        navigation.navigate("LogInScreen")
       )}
     </View>
   );

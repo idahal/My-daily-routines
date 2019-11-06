@@ -22,22 +22,24 @@ const AddRoutine = props => {
   const isInvalid = routineName === "";
 
   const addNewRoutine = async e => {
-    // e.preventDefault();
+    e.preventDefault();
 
     if (authUser) {
       // Add data to firebase:
       db.collection("routines")
-        .doc(authUser.uid)
-        .set({
+
+        .add({
           name: routineName,
-          // description: time,
           addedByUserUid: authUser.uid
         })
-        .then(function() {
+        .then(function(docRef) {
+          console.log(docRef.id);
           console.log({ routineName });
+
           navigation.navigate("CreateActivityScreen", {
             name: routineName,
-            addedByUserUid: authUser.uid
+            addedByUserUid: authUser.uid,
+            keyId: docRef.id
           });
 
           // resetForm();

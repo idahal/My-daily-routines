@@ -10,7 +10,7 @@ const LogInScreen = props => {
   const [userError, setUserError] = useState(null);
   // Do something while loading
 
-  const [setLoading] = useState(false);
+  // const [setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -27,7 +27,7 @@ const LogInScreen = props => {
 
   const login = async e => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     setUserError(null);
     try {
       await firebase.auth().signInWithEmailAndPassword(userEmail, userPassword);
@@ -36,7 +36,7 @@ const LogInScreen = props => {
     } catch (err) {
       setUserError(err);
     } finally {
-      setLoading(false);
+      // setLoading(false);
       resetForm();
     }
   };

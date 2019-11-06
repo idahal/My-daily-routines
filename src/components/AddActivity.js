@@ -28,7 +28,7 @@ const AddActivity = props => {
     if (authUser) {
       // Add data to firebase:
       db.collection("routines")
-        .doc(props.docName)
+        .doc(props.collectionId)
         .collection("activity")
         .doc()
         .set({
@@ -37,7 +37,7 @@ const AddActivity = props => {
           addedByUserUid: authUser.uid
         })
         .then(function() {
-          console.log("Yes, it worked!");
+          console.log(activityName);
           resetForm();
         })
         .catch(function(error) {
