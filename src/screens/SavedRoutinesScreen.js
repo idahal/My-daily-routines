@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
-// import { useAuth } from "../config/auth";
+import { useAuth } from "../config/auth";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 import colors from "../constants/Colors";
@@ -15,24 +15,24 @@ const SavedRoutineScreen = props => {
   const [routine, setRoutine] = useState([]);
 
   // Get user if logged in
-  // const { authUser } = useAuth();
+  const { authUser } = useAuth();
 
   useEffect(() => {
     const tempArray = [];
-
-    db.collection("routines")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          tempArray.push({ id: doc.id, ...doc.data() });
+    if (authUser) {
+      console.log(authUser);
+      db.collection("routines")
+        .where("addedByUserUid", "==", authUser.uid)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            console.log({ id: doc.id }, { ...doc.data() });
+            tempArray.push({ id: doc.id, ...doc.data() });
+          });
+          setRoutine(tempArray);
         });
-        setRoutine(tempArray);
-      });
+    }
   }, [db]);
-
-  // const addNewRoutine = object => {
-  //   setRoutine([...routine, object]);
-  // };
 
   return (
     <View>

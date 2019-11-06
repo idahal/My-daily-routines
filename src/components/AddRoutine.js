@@ -35,6 +35,7 @@ const AddRoutine = props => {
         .then(function(docRef) {
           console.log(docRef.id);
           console.log({ routineName });
+          console.log(authUser);
 
           navigation.navigate("CreateActivityScreen", {
             name: routineName,
