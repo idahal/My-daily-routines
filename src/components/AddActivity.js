@@ -12,7 +12,7 @@ const AddActivity = props => {
 
   const number = parseInt(minutes);
 
-  // Get user if logged in
+  // Get users auth
   const { authUser } = useAuth();
 
   const resetForm = () => {
@@ -26,7 +26,7 @@ const AddActivity = props => {
     e.preventDefault();
 
     if (authUser) {
-      // Add data to firebase:
+      // Write data to firebase:
       db.collection("routines")
         .doc(props.collectionId)
         .collection("activity")
@@ -39,6 +39,10 @@ const AddActivity = props => {
         .then(function() {
           console.log(activityName);
           resetForm();
+          props.displayNewActivity({
+            name: activityName,
+            description: number
+          });
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);
