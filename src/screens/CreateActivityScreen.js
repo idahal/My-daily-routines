@@ -22,9 +22,6 @@ const CreateActivityScreen = props => {
 
   useEffect(() => {
     const tempArray = [];
-    // const routinesRef = db.collection("routines");
-
-    // routinesRef
     db.collection("routines")
       .doc(collectionId)
       .collection("activity")
@@ -37,6 +34,11 @@ const CreateActivityScreen = props => {
       });
   }, [db]);
 
+  const displayNewActivity = object => {
+    setActivity([...activity, object]);
+  };
+
+  console.log(activity);
   return (
     <View>
       <Button
@@ -47,7 +49,7 @@ const CreateActivityScreen = props => {
       <Text>Mina aktiviteter</Text>
       <Text>{docName}</Text>
       {activity.map(item => (
-        <View key={item.id}>
+        <View keyExtractor={item.id}>
           <Text>{item.name}</Text>
           <Text>{item.description}</Text>
         </View>
@@ -58,6 +60,7 @@ const CreateActivityScreen = props => {
           docName={docName}
           userId={userId}
           collectionId={collectionId}
+          displayNewActivity={displayNewActivity}
         />
       ) : (
         <Text>Du är inte inloggad</Text>
