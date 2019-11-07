@@ -56,12 +56,23 @@ const CreateActivityScreen = props => {
       ))}
 
       {authUser ? (
-        <AddActivity
-          docName={docName}
-          userId={userId}
-          collectionId={collectionId}
-          displayNewActivity={displayNewActivity}
-        />
+        <View>
+          <AddActivity
+            docName={docName}
+            userId={userId}
+            collectionId={collectionId}
+            displayNewActivity={displayNewActivity}
+          />
+          <Button
+            onPress={() =>
+              navigation.navigate("DisplayRoutineScreen", {
+                name: docName,
+                addedByUserUid: authUser.uid,
+                keyId: collectionId
+              })
+            }
+          ></Button>
+        </View>
       ) : (
         <Text>Du är inte inloggad</Text>
       )}
