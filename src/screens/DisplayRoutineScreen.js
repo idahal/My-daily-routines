@@ -13,7 +13,7 @@ const DisplayRoutineScreen = props => {
 
   //Get params from addRoutineScreen
   const docName = navigation.getParam("name");
-  const userId = navigation.getParam("addedByUserUid");
+  //   const userId = navigation.getParam("addedByUserUid");
   const collectionId = navigation.getParam("keyId");
   console.log({ docName });
 
@@ -28,8 +28,20 @@ const DisplayRoutineScreen = props => {
           tempArray.push({ id: doc.id, ...doc.data() });
         });
         setActivity(tempArray);
+        console.log(tempArray);
       });
   }, [db]);
+
+  db.collection("routines")
+    .doc(collectionId)
+    .collection("activity")
+    .get()
+    .then(onSnapshot => {
+      onSnapshot.forEach(doc => {
+        const { description } = doc.data();
+        console.log(description);
+      });
+    });
 
   return (
     <View>
@@ -38,6 +50,7 @@ const DisplayRoutineScreen = props => {
         onPress={() => navigation.navigate("HomeScreen")}
       ></Button>
       <Text>{docName}</Text>
+
       {activity.map(item => (
         <View key={item.id}>
           <Text>{item.name}</Text>
