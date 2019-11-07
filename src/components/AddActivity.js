@@ -41,7 +41,8 @@ const AddActivity = props => {
           resetForm();
           props.displayNewActivity({
             name: activityName,
-            description: number
+            description: number,
+            id: activityName
           });
         })
         .catch(function(error) {

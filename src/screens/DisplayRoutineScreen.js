@@ -39,7 +39,7 @@ const DisplayRoutineScreen = props => {
       ></Button>
       <Text>{docName}</Text>
       {activity.map(item => (
-        <View keyExtractor={item.id}>
+        <View key={item.id}>
           <Text>{item.name}</Text>
           <Text>{item.description}</Text>
         </View>

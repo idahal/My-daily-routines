@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
@@ -44,11 +44,22 @@ const SavedRoutineScreen = props => {
       <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
       <Text>Mina rutiner</Text>
       {routine.map(item => (
-        <View key={item.id} style={styles.routine}>
-          <Text style={styles.infotext}>{item.name}</Text>
-          <Text style={styles.infotext}>{item.description}</Text>
-          {/* <Text>{item.addedByUserUid}</Text> */}
-        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate("DisplayRoutineScreen", {
+              name: item.name,
+              addedByUserUid: authUser.uid,
+              keyId: item.id
+            })
+          }
+        >
+          <View key={item.id} style={styles.routine}>
+            <Text style={styles.infotext}>{item.name}</Text>
+            <Text style={styles.infotext}>{item.id}</Text>
+            {/* <Text>{item.addedByUserUid}</Text> */}
+          </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

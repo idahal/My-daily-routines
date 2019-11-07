@@ -49,7 +49,7 @@ const CreateActivityScreen = props => {
       <Text>Mina aktiviteter</Text>
       <Text>{docName}</Text>
       {activity.map(item => (
-        <View keyExtractor={item.id}>
+        <View key={item.id}>
           <Text>{item.name}</Text>
           <Text>{item.description}</Text>
         </View>
@@ -64,6 +64,7 @@ const CreateActivityScreen = props => {
             displayNewActivity={displayNewActivity}
           />
           <Button
+            title="Gå vidare"
             onPress={() =>
               navigation.navigate("DisplayRoutineScreen", {
                 name: docName,
