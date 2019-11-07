@@ -18,17 +18,10 @@ const HomeScreen = props => {
 
   return (
     <View style={styles.container}>
-      <Text>Startsidan</Text>
       {authUser ? (
         <View style={styles.container}>
           <Hero />
           {/* main menu */}
-          <MenuButton
-            text="Skapa en aktivitet"
-            onPress={() => {
-              navigation.navigate("CreateActivityScreen");
-            }}
-          />
           <MenuButton
             text="Skapa en rutin"
             onPress={() => {
@@ -39,6 +32,12 @@ const HomeScreen = props => {
             text="Mina sparade rutiner"
             onPress={() => {
               navigation.navigate("SavedRoutinesScreen");
+            }}
+          />
+          <MenuButton
+            text="Inställningar"
+            onPress={() => {
+              navigation.navigate("/");
             }}
           />
 

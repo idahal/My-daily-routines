@@ -17,7 +17,7 @@ const MenuButton = props => {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 32,
+    marginTop: "2rem",
     marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
@@ -28,13 +28,14 @@ const styles = StyleSheet.create({
     borderColor: colors.dark,
     width: 343,
     height: 50,
-    paddingLeft: 16,
-    paddingRight: 16
+    paddingLeft: "1rem",
+    paddingRight: "1rem"
   },
   buttonText: {
     color: colors.black,
-    fontFamily: font.regular,
-    fontSize: 16
+    fontFamily: font.main,
+    fontWeight: "500",
+    fontSize: "1rem"
   }
 });
 

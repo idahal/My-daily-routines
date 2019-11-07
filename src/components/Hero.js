@@ -22,24 +22,26 @@ const Hero = () => {
 const styles = StyleSheet.create({
   welcomeImage: {
     width: width,
-    height: 200,
+    height: 250,
     position: "relative"
   },
   titletext: {
     color: colors.lightWhite,
-    fontFamily: "Raleway",
+    fontFamily: font.main,
+    fontWeight: "800",
+    letterSpacing: "0.02em",
     position: "absolute", // child
-    top: 60, // position where you want
-    left: 80,
-    fontSize: 24
+    top: "35%", // position where you want
+    left: "20%",
+    fontSize: "1.5rem"
   },
   welcometext: {
     color: colors.lightWhite,
     fontFamily: font.gloria,
     position: "absolute", // child
-    top: 16, // position where you want
-    left: 110,
-    fontSize: 24,
+    top: "10%", // position where you want
+    left: "30%",
+    fontSize: "1.5rem",
     textTransform: "uppercase"
   }
 });

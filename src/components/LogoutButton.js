@@ -1,7 +1,9 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, Dimensions } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
+var width = Dimensions.get("window").width; //full width
+// var height = Dimensions.get("window").height; //full height
 
 const LogoutButton = props => {
   const { text, onPress } = props;
@@ -14,12 +16,12 @@ const LogoutButton = props => {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 32,
+    margin: 0,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.dark,
     borderRadius: 0,
-    width: "100%",
+    width: width,
     height: 50,
     paddingLeft: 16,
     paddingRight: 16,
