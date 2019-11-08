@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     position: "absolute", // child
     top: "1rem", // position where you want
     right: 10,
-    fontSize: "0.8rem",
+    fontSize: "1rem",
     fontFamily: font.gloria,
     width: "70%",
     transform: [{ rotate: "5deg" }]

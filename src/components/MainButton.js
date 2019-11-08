@@ -4,9 +4,13 @@ import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
 const LogoutButton = props => {
-  const { text, onPress } = props;
+  const { text, onPress, disabled } = props;
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, disabled && styles.buttonDisabled]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
@@ -25,9 +29,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textTransform: "uppercase",
-    fontFamily: font.extrabold,
+    fontFamily: font.main,
+    fontWeight: "800",
     color: colors.lightWhite,
-    fontSize: 16
+    letterSpacing: "0.05em",
+    fontSize: "1rem"
+  },
+  buttonDisabled: {
+    opacity: 0.6
   }
 });
 

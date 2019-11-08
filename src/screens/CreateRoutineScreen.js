@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 // import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import colors from "../constants/Colors";
 import AddRoutine from "../components/AddRoutine";
+import HomeButton from "../components/HomeButton";
+
 import Title from "../components/Title";
-import MainButton from "../components/MainButton";
+// var width = Dimensions.get("window").width; //full width
+var height = Dimensions.get("window").height; //full height
 
 const CreateRoutineScreen = props => {
   const { navigation } = props;
@@ -23,14 +26,13 @@ const CreateRoutineScreen = props => {
 
   return (
     <View>
-      <Button
-        title="Hem"
-        style={styles.button}
+      <HomeButton
+        text="Hem"
         onPress={() => navigation.navigate("HomeScreen")}
-      ></Button>
+      ></HomeButton>
       {authUser ? (
         <View style={styles.container}>
-          <Title title={"Skapa en\nny rutin"} text="Välj namn och tid" />
+          <Title title={"Skapa en\nny rutin"} text="Min nya rutin" />
           <AddRoutine addNewRoutine={addNewRoutine} navigation={navigation} />
         </View>
       ) : (
@@ -43,6 +45,7 @@ const CreateRoutineScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: height,
     justifyContent: "flex-start",
     alignItems: "flex-start",
     backgroundColor: colors.lightWhite

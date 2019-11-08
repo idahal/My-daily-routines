@@ -59,41 +59,39 @@ const AddRoutine = props => {
         type="text"
         name="routineName"
         id="routineName"
-        placeholder="Namn"
+        placeholder="Här skriver du namnet"
         value={routineName}
         onChange={e => setRoutineName(e.target.value)}
       />
 
-      <MainButton text="Spara" onPress={addNewRoutine} />
+      <MainButton text="Spara" onPress={addNewRoutine} disabled={isInvalid} />
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginLeft: 16
+    height: "100%"
   },
   textInput: {
-    height: 40,
+    height: 50,
     width: 230,
     borderColor: colors.black,
     borderWidth: 1,
-    marginTop: 16,
-    fontFamily: font.italic,
+    marginTop: "1rem",
+    fontFamily: font.main,
     paddingLeft: 5,
-    color: colors.dark
-  },
-  timeInput: {
-    height: 40,
-    width: 150,
-    marginTop: 16,
-    fontFamily: font.italic
+    marginLeft: "1rem",
+    color: colors.dark,
+    fontStyle: "italic"
   },
   text: {
     color: colors.black,
-    marginTop: 16,
-    fontSize: 16,
-    fontFamily: font.regular
+    marginTop: "2rem",
+    fontSize: "1rem",
+    marginLeft: "1rem",
+    letterSpacing: "0.05em",
+    fontFamily: font.main
   }
 });
 

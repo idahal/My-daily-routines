@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
 import { Button, StyleSheet, Text, View } from "react-native";
+import HomeButton from "../components/HomeButton";
 import AddActivity from "../components/AddActivity";
+
 import colors from "../constants/Colors";
 
 const CreateActivityScreen = props => {
@@ -41,11 +43,11 @@ const CreateActivityScreen = props => {
   console.log(activity);
   return (
     <View>
-      <Button
+      <HomeButton
         title="Hem"
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
-      ></Button>
+      ></HomeButton>
       <Text>Mina aktiviteter</Text>
       <Text>{docName}</Text>
       {activity.map(item => (
