@@ -10,12 +10,27 @@ const DisplayRoutineScreen = props => {
 
   const db = app.firestore();
   const [activity, setActivity] = useState([]);
+  const [total, setTotal] = useState([]);
 
   //Get params from addRoutineScreen
   const docName = navigation.getParam("name");
   //   const userId = navigation.getParam("addedByUserUid");
   const collectionId = navigation.getParam("keyId");
   console.log({ docName });
+
+  const countTotal = () => {
+    if (activity.length > 0) {
+      let timeArray = 0;
+      activity.forEach(item => {
+        timeArray += item.description;
+      });
+      setTotal(timeArray);
+
+      console.log(timeArray);
+    }
+  };
+
+  console.log(total);
 
   useEffect(() => {
     const tempArray = [];
@@ -32,16 +47,9 @@ const DisplayRoutineScreen = props => {
       });
   }, [db]);
 
-  db.collection("routines")
-    .doc(collectionId)
-    .collection("activity")
-    .get()
-    .then(onSnapshot => {
-      onSnapshot.forEach(doc => {
-        const { description } = doc.data();
-        console.log(description);
-      });
-    });
+  useEffect(() => {
+    countTotal();
+  }, [activity]);
 
   return (
     <View>
@@ -57,7 +65,8 @@ const DisplayRoutineScreen = props => {
           <Text>{item.description}</Text>
         </View>
       ))}
-      <Timer />
+      <Text>{total}</Text>
+      <Timer total={total} />
     </View>
   );
 };

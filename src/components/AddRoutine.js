@@ -63,15 +63,8 @@ const AddRoutine = props => {
         value={routineName}
         onChange={e => setRoutineName(e.target.value)}
       />
-      <Text style={styles.text}>Vilken tid på klockan ska du vara klar:</Text>
 
-      {/* <TextInput
-        style={styles.textInput}
-        type="datetime-local"
-        placeholder="00:00"
-      /> */}
-
-      <MainButton text="Spara" onPress={addNewRoutine} disabled={isInvalid} />
+      <MainButton text="Spara" onPress={addNewRoutine} />
     </View>
   );
 };

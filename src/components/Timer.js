@@ -4,8 +4,10 @@ import { Button, StyleSheet, Text, View } from "react-native";
 
 // const { navigation } = props;
 
-const Timer = () => {
+const Timer = props => {
   // Change useState value to dynamic
+  let number = props.total;
+  console.log(number);
   const [count, setCounter] = useState(60);
   const [isActive, setIsActive] = useState(false);
 
@@ -35,7 +37,7 @@ const Timer = () => {
     <View>
       <Text>{count}</Text>
 
-      <Button title={isActive ? "Pause" : "Start"} onPress={toggle} />
+      <Button title={isActive ? "Paus" : "Start"} onPress={toggle} />
       <Button title="Stop" onPress={reset} />
     </View>
   );

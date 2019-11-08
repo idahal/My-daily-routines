@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
+
+var width = Dimensions.get("window").width; //full width
+// var height = Dimensions.get("window").height; //full height
 
 const Title = props => {
   const { title, text } = props;
@@ -17,7 +20,7 @@ const Title = props => {
 
 const styles = StyleSheet.create({
   topview: {
-    width: "100%",
+    width: width,
     height: 150,
     position: "relative",
     marginTop: 50,
@@ -27,26 +30,27 @@ const styles = StyleSheet.create({
     color: colors.lightWhite,
     position: "absolute", // child
     top: 40, // position where you want
-    left: 16,
-    fontSize: 24,
-    fontFamily: font.extrabold,
+    left: "1rem",
+    fontSize: "1.5rem",
+    fontFamily: font.main,
+    fontWeight: "800",
     textTransform: "uppercase"
   },
   circle: {
     width: 100,
     height: 100,
     position: "absolute", // child
-    top: 25, // position where you want
-    right: 16,
+    top: "1.5rem", // position where you want
+    right: "1rem",
     borderRadius: 50,
     backgroundColor: colors.lightWhite
   },
   welcometext: {
-    color: colors.lightWhite,
+    color: colors.dark,
     position: "absolute", // child
-    top: 16, // position where you want
+    top: "1rem", // position where you want
     right: 10,
-    fontSize: 14,
+    fontSize: "0.8rem",
     fontFamily: font.gloria,
     width: "70%",
     transform: [{ rotate: "5deg" }]
