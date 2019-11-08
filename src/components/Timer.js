@@ -8,16 +8,17 @@ const Timer = props => {
   // Change useState value to dynamic
   let number = props.total;
   console.log(number);
-  const [count, setCounter] = useState(60);
+  const [count, setCounter] = useState(number);
   const [isActive, setIsActive] = useState(false);
 
   function toggle() {
+    setCounter(number);
     setIsActive(!isActive);
   }
 
   // Change setCounter value to dynamic
   function reset() {
-    setCounter(60);
+    setCounter(number);
     setIsActive(false);
   }
 
@@ -33,6 +34,7 @@ const Timer = props => {
     return () => clearInterval(interval);
   }, [isActive, count]);
 
+  console.log(count);
   return (
     <View>
       <Text>{count}</Text>

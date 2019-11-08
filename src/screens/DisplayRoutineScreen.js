@@ -65,7 +65,6 @@ const DisplayRoutineScreen = props => {
           <Text>{item.description}</Text>
         </View>
       ))}
-      <Text>{total}</Text>
       <Timer total={total} />
     </View>
   );
