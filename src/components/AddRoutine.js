@@ -61,27 +61,31 @@ const AddRoutine = props => {
         id="routineName"
         placeholder="Här skriver du namnet"
         value={routineName}
+        maxLength={25}
         onChange={e => setRoutineName(e.target.value)}
       />
 
-      <MainButton text="Spara" onPress={addNewRoutine} disabled={isInvalid} />
+      <MainButton
+        text="Gå vidare"
+        onPress={addNewRoutine}
+        disabled={isInvalid}
+      />
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%"
+    justifyContent: "flex-start"
   },
   textInput: {
     height: 50,
     width: 230,
     borderColor: colors.black,
-    borderWidth: 1,
+    borderWidth: 0.5,
+    borderStyle: "solid",
     marginTop: "1rem",
     fontFamily: font.main,
     paddingLeft: 5,
-    marginLeft: "1rem",
     color: colors.dark,
     fontStyle: "italic"
   },
@@ -89,7 +93,6 @@ const styles = StyleSheet.create({
     color: colors.black,
     marginTop: "2rem",
     fontSize: "1rem",
-    marginLeft: "1rem",
     letterSpacing: "0.05em",
     fontFamily: font.main
   }
