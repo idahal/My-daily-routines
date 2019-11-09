@@ -119,9 +119,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.black,
-    marginTop: "2rem",
+    marginBottom: "2rem",
     fontSize: "1.5rem",
-    marginLeft: "1rem",
     letterSpacing: "0.05em",
     fontFamily: font.main
   },
