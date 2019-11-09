@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
@@ -11,7 +11,7 @@ import LogoutButton from "../components/LogoutButton";
 
 import Title from "../components/Title";
 // var width = Dimensions.get("window").width; //full width
-var height = Dimensions.get("window").height; //full height
+// var height = Dimensions.get("window").height; //full height
 
 const CreateRoutineScreen = props => {
   const { navigation } = props;

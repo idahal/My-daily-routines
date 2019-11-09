@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import colors from "../constants/Colors";
+import font from "../constants/Fonts";
+import MainButton from "./MainButton";
 
 const AddActivity = props => {
   const db = app.firestore();
@@ -37,7 +39,6 @@ const AddActivity = props => {
           addedByUserUid: authUser.uid
         })
         .then(function() {
-          console.log(activityName);
           resetForm();
           props.displayNewActivity({
             name: activityName,
@@ -53,61 +54,54 @@ const AddActivity = props => {
 
   return (
     <View style={styles.container}>
-      <Text>Min aktiviteter</Text>
+      <Text style={styles.text}>Namn på rutinen:</Text>
       <TextInput
         style={styles.textInput}
         type="text"
         name="activityName"
         id="activityName"
-        placeholder="Namn"
+        placeholder="Skriv namn på aktiviteten"
         value={activityName}
         onChange={e => setActivityName(e.target.value)}
       />
+      <Text style={styles.text}>Hur lång tid tar aktiviteten att göra:</Text>
       <TextInput
         style={styles.textInput}
         type="text"
         name="minutes"
         id="minutes"
-        placeholder="Antal minuter"
+        placeholder="Skriv antal minuter"
         keyboardType={"numeric"} // This prop help to open numeric keyboard
         value={minutes}
         onChange={e => setMinutes(e.target.value)}
       />
-      <Button
-        title="Spara"
-        onPress={addNewActivity}
-        disabled={isInvalid}
-      ></Button>
+      <MainButton text="Spara" onPress={addNewActivity} disabled={isInvalid} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: colors.lightWhite
+    justifyContent: "flex-start"
   },
-  button: {
-    marginTop: 30,
-    marginBottom: 20,
-    paddingVertical: 5,
-    alignItems: "center",
-    backgroundColor: colors.button,
-    borderRadius: 0,
-    width: 200
-  },
-  buttonText: {
-    color: colors.lightWhite
-  },
-
   textInput: {
-    height: 40,
-    width: 350,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 3
+    height: 50,
+    width: 230,
+    borderColor: colors.black,
+    borderWidth: 0.5,
+    borderStyle: "solid",
+    marginTop: "1rem",
+    fontFamily: font.main,
+    paddingLeft: 5,
+    color: colors.dark,
+    fontStyle: "italic"
+  },
+  text: {
+    color: colors.black,
+    marginTop: "2rem",
+    fontSize: "1rem",
+    letterSpacing: "0.05em",
+    fontFamily: font.main
   }
 });
 

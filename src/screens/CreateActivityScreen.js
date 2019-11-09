@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
+import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View } from "react-native";
-import HomeButton from "../components/HomeButton";
-import AddActivity from "../components/AddActivity";
-
+import { Button, StyleSheet, Text, View, Dimensions } from "react-native";
 import colors from "../constants/Colors";
+import font from "../constants/Fonts";
+import HomeButton from "../components/HomeButton";
+import LogoutButton from "../components/LogoutButton";
+import AddActivity from "../components/AddActivity";
+import Title from "../components/Title";
+// var width = Dimensions.get("window").width; //full width
+var height = Dimensions.get("window").height; //full height
 
 const CreateActivityScreen = props => {
   const { navigation } = props;
+
+  const logout = () => {
+    firebase.auth().signOut();
+  };
 
   const db = app.firestore();
   const [activity, setActivity] = useState([]);
@@ -40,25 +49,27 @@ const CreateActivityScreen = props => {
     setActivity([...activity, object]);
   };
 
-  console.log(activity);
   return (
-    <View>
+    <View style={styles.container}>
       <HomeButton
         title="Hem"
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
       ></HomeButton>
-      <Text>Mina aktiviteter</Text>
-      <Text>{docName}</Text>
-      {activity.map(item => (
-        <View key={item.id}>
-          <Text>{item.name}</Text>
-          <Text>{item.description}</Text>
-        </View>
-      ))}
-
+      <Title title={"Skapa en ny rutin"} />
+      <View>
+        <Text>{docName}</Text>
+        {activity.map(item => (
+          <View key={item.id}>
+            <Text>{item.name}</Text>
+            <Text>{item.description}</Text>
+          </View>
+        ))}
+      </View>
       {authUser ? (
-        <View>
+        <View style={styles.container}>
+          <Text style={styles.text}>Steg 2 av 2</Text>
+
           <AddActivity
             docName={docName}
             userId={userId}
@@ -75,6 +86,7 @@ const CreateActivityScreen = props => {
               })
             }
           ></Button>
+          <LogoutButton text="Logga ut" onPress={() => logout()} />
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>
@@ -87,12 +99,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: colors.lightWhite
+    alignItems: "center"
   },
-  button: {
-    marginTop: 20,
-    color: colors.dark
+  text: {
+    color: colors.black,
+    marginTop: "2rem",
+    marginBottom: "2rem",
+    fontSize: "1.5rem",
+    letterSpacing: "0.05em",
+    fontFamily: font.main
   }
 });
 export default CreateActivityScreen;
