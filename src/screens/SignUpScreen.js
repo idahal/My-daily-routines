@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
+import Hero from "../components/Hero";
 import MainButton from "../components/MainButton";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
@@ -50,6 +51,7 @@ const SignUpScreen = props => {
 
   return (
     <View style={styles.container}>
+      <Hero />
       <Text style={styles.text}>Registrera ditt konto här:</Text>
 
       {authUser ? (
@@ -81,7 +83,9 @@ const SignUpScreen = props => {
             style={styles.link}
             onPress={() => navigation.navigate("LogInScreen")}
           >
-            <Text>Har du redan ett konto? Logga in här.</Text>
+            <Text style={styles.linkText}>
+              Har du redan ett konto? Logga in här.
+            </Text>
           </TouchableOpacity>
         </View>
       )}
@@ -93,7 +97,7 @@ const SignUpScreen = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
   textInput: {
@@ -111,14 +115,17 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.black,
-    marginBottom: "2rem",
+    marginTop: "2rem",
+    marginBottom: "1rem",
     fontSize: "1.5rem",
     letterSpacing: "0.05em",
     fontFamily: font.main
   },
   link: {
+    marginTop: "1rem"
+  },
+  linkText: {
     color: colors.black,
-    marginTop: "1rem",
     fontSize: "1rem",
     letterSpacing: "0.05em",
     textAlign: "center"

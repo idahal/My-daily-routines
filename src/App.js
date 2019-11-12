@@ -7,7 +7,7 @@ import colors from "./constants/Colors";
 
 console.disableYellowBox = ["Warning"];
 
-// var width = Dimensions.get("window").width; //full width
+var width = Dimensions.get("window").width; //full width
 var height = Dimensions.get("window").height; //full height
 
 function App() {
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.lightWhite,
-    height: height
+    height: height,
+    width: width
   }
 });
