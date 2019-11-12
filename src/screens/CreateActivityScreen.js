@@ -9,7 +9,7 @@ import HomeButton from "../components/HomeButton";
 import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
 import Title from "../components/Title";
-// var width = Dimensions.get("window").width; //full width
+var width = Dimensions.get("window").width; //full width
 var height = Dimensions.get("window").height; //full height
 
 const CreateActivityScreen = props => {
@@ -57,18 +57,26 @@ const CreateActivityScreen = props => {
         onPress={() => navigation.navigate("HomeScreen")}
       ></HomeButton>
       <Title title={"Skapa en ny rutin"} />
-      <View>
-        <Text>{docName}</Text>
-        {activity.map(item => (
-          <View key={item.id}>
-            <Text>{item.name}</Text>
-            <Text>{item.description}</Text>
-          </View>
-        ))}
-      </View>
       {authUser ? (
         <View style={styles.container}>
           <Text style={styles.text}>Steg 2 av 2</Text>
+          <View>
+            <Text>{docName}</Text>
+            <View style={styles.activityInfo}>
+              <Text style={styles.activityInfoText}>Uppgift</Text>
+              <Text style={styles.activityInfoText}>Tid</Text>
+              <Text style={styles.activityInfoText}>Ta bort</Text>
+            </View>
+            {activity.map(item => (
+              <View style={styles.activityCard} key={item.id}>
+                <Text style={styles.activityCardText}>{item.name}</Text>
+                <Text style={styles.activityCardText}>
+                  {item.description} min
+                </Text>
+                <Text>X</Text>
+              </View>
+            ))}
+          </View>
 
           <AddActivity
             docName={docName}
@@ -108,6 +116,39 @@ const styles = StyleSheet.create({
     fontSize: "1.5rem",
     letterSpacing: "0.05em",
     fontFamily: font.main
+  },
+  activityInfo: {
+    width: "343px",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    marginBottom: "1rem"
+  },
+  activityInfoText: {
+    fontSize: "1.2rem",
+    letterSpacing: "0.05em",
+    fontFamily: font.main,
+    fontWeight: "800"
+  },
+  activityCard: {
+    width: "343px",
+    height: "50px",
+    borderColor: colors.dark,
+    borderWidth: "1px",
+    borderStyle: "solid",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    alignItems: "center",
+    boxShadow: "0px, 4px, 4px, 0px rgba(0, 0, 0, 0.25)",
+    marginBottom: "1rem"
+  },
+  activityCardText: {
+    fontFamily: font.main,
+    fontSize: "1rem",
+    letterSpacing: "0.05em"
   }
 });
 export default CreateActivityScreen;
