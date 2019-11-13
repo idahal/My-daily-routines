@@ -12,12 +12,12 @@ const Timer = props => {
   let number = props.total;
   const [count, setCounter] = useState(number);
   const [isActive, setIsActive] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
   function toggle() {
     setCounter(number);
     setIsActive(true);
-    setShowForm(true);
+    setShowButtons(true);
   }
 
   function reset() {
@@ -34,7 +34,7 @@ const Timer = props => {
     if (isActive) {
       interval = setInterval(() => {
         setCounter(count => count - 1);
-      }, 1000);
+      }, 60000);
     } else if (!isActive && count !== 0) {
       clearInterval(interval);
     }
@@ -45,7 +45,7 @@ const Timer = props => {
     <View>
       <MainButton text={"Starta timer"} onPress={toggle} />
       <Text style={styles.timer}>{count}</Text>
-      {showForm && (
+      {showButtons && (
         <View style={styles.timerButtons}>
           <TouchableOpacity onPress={paus}>
             {isActive ? (
