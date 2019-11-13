@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
+import firebase from "../config/firebase";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Title from "../components/Title";
+import HomeButton from "../components/HomeButton";
+import LogoutButton from "../components/LogoutButton";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
-import Title from "../components/Title";
-
 const SavedRoutineScreen = props => {
   const { navigation } = props;
+
+  const logout = () => {
+    firebase.auth().signOut();
+    navigation.navigate("LogInScreen");
+  };
 
   const db = app.firestore();
   const [routine, setRoutine] = useState([]);
@@ -20,13 +26,11 @@ const SavedRoutineScreen = props => {
   useEffect(() => {
     const tempArray = [];
     if (authUser) {
-      console.log(authUser);
       db.collection("routines")
         .where("addedByUserUid", "==", authUser.uid)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            console.log({ id: doc.id }, { ...doc.data() });
             tempArray.push({ id: doc.id, ...doc.data() });
           });
           setRoutine(tempArray);
@@ -35,32 +39,37 @@ const SavedRoutineScreen = props => {
   }, [db]);
 
   return (
-    <View>
-      <Button
-        title="Hem"
-        style={styles.button}
+    <View style={styles.container}>
+      <HomeButton
+        text="Hem"
         onPress={() => navigation.navigate("HomeScreen")}
-      ></Button>
-      <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
-      <Text>Mina rutiner</Text>
-      {routine.map(item => (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            navigation.navigate("DisplayRoutineScreen", {
-              name: item.name,
-              addedByUserUid: authUser.uid,
-              keyId: item.id
-            })
-          }
-        >
-          <View key={item.id} style={styles.routine}>
-            <Text style={styles.infotext}>{item.name}</Text>
-            <Text style={styles.infotext}>{item.id}</Text>
-            {/* <Text>{item.addedByUserUid}</Text> */}
-          </View>
-        </TouchableOpacity>
-      ))}
+      ></HomeButton>
+      <Title title={"Mina sparade rutiner"} />
+      {authUser ? (
+        <View style={styles.listContainer}>
+          {routine.map(item => (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() =>
+                navigation.navigate("DisplayRoutineScreen", {
+                  name: item.name,
+                  addedByUserUid: authUser.uid,
+                  keyId: item.id
+                })
+              }
+            >
+              <View style={styles.routineCard} key={item.id}>
+                <Text key={item.id} style={styles.routineCardText}>
+                  {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+          <LogoutButton text="Logga ut" onPress={() => logout()} />
+        </View>
+      ) : (
+        <Text>Du är inte inloggad</Text>
+      )}
     </View>
   );
 };
@@ -69,86 +78,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: colors.lightWhite
+    alignItems: "center"
+  },
+  listContainer: {
+    alignItems: "center"
   },
   button: {
-    marginTop: 20,
-    color: colors.dark
+    marginTop: 20
   },
-  routine: {
-    backgroundColor: colors.lightWhite,
-    borderWidth: 1,
+  routineCard: {
+    width: "343px",
+    height: "50px",
     borderColor: colors.dark,
-    width: 343,
-    height: 100,
-    marginTop: 16
+    borderWidth: "1px",
+    borderStyle: "solid",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    alignItems: "center",
+    shadowColor: colors.dark,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+    marginBottom: "1rem"
   },
-  infotext: {
-    fontFamily: font.extrabold,
-    fontSize: 18
+  routineCardText: {
+    fontFamily: font.main,
+    fontWeight: "800",
+    color: colors.dark,
+    fontSize: "1.2rem",
+    letterSpacing: "0.05em",
+    textTransform: "capitalize"
   }
 });
 export default SavedRoutineScreen;
-
-// import React from "react";
-// import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-// import { firestore } from "../config/firebase";
-// import Routines from ".././components/Routines";
-// import Title from ".././components/Title";
-// import colors from ".././constants/Colors";
-// import Heart from ".././icons/Heart";
-
-// import { collectIdsAndDocs } from "../.././config/utilities";
-
-// class SavedRoutineScreen extends React.Component {
-//   state = {
-//     routines: []
-//   };
-//   unsubscribe = null;
-
-//   componentDidMount = async () => {
-//     this.unsubscribe = firestore.collection("routines").onSnapshot(snapshot => {
-//       const routines = snapshot.docs.map(collectIdsAndDocs);
-//       this.setState({ routines });
-//     });
-//   };
-
-//   componentWillUnmount = () => {
-//     this.unsubscribe();
-//   };
-
-//   render() {
-//     const { routines } = this.state;
-
-//     return (
-//       <View style={styles.container}>
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => {
-//             this.props.navigation.navigate("HomeScreen");
-//           }}
-//         >
-//           <Text>HEM</Text>
-//         </TouchableOpacity>
-//         <Title title={"Mina\nsparade rutiner"} text={"Sparat"} />
-//         {/* <Heart></Heart> */}
-//         <Routines routines={routines} />
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "flex-start",
-//     alignItems: "center",
-//     backgroundColor: colors.lightWhite
-//   },
-//   button: {
-//     marginTop: 20
-//   }
-// });
-
-// export default SavedRoutineScreen;
