@@ -75,7 +75,8 @@ const AddRoutine = props => {
 };
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    width: "100%"
   },
   textInput: {
     height: 50,
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderStyle: "solid",
     marginTop: "1rem",
+    marginLeft: "2rem",
     fontFamily: font.main,
     paddingLeft: 5,
     color: colors.dark,
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.black,
     marginTop: "2rem",
+    marginLeft: "2rem",
     fontSize: "1rem",
     letterSpacing: "0.05em",
     fontFamily: font.main

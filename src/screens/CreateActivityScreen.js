@@ -174,7 +174,14 @@ const styles = StyleSheet.create({
     paddingLeft: "1rem",
     paddingRight: "1rem",
     alignItems: "center",
-    boxShadow: "0px, 4px, 4px, 0px rgba(0, 0, 0, 0.25)",
+    shadowColor: colors.dark,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
     marginBottom: "1rem"
   },
   activityCardText: {
