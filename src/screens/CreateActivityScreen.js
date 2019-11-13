@@ -25,6 +25,7 @@ const CreateActivityScreen = props => {
 
   const logout = () => {
     firebase.auth().signOut();
+    navigation.navigate("LogInScreen");
   };
 
   const db = app.firestore();
@@ -33,7 +34,6 @@ const CreateActivityScreen = props => {
 
   // Get user if logged in
   const { authUser } = useAuth();
-  console.log(navigation.getParam("name"));
 
   //Get params from addRoutine
   const docName = navigation.getParam("name");
@@ -61,7 +61,7 @@ const CreateActivityScreen = props => {
   return (
     <View style={styles.container}>
       <HomeButton
-        title="Hem"
+        text="Hem"
         style={styles.button}
         onPress={() => navigation.navigate("HomeScreen")}
       ></HomeButton>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
-   text: {
+  text: {
     color: colors.black,
     marginTop: "2rem",
     marginBottom: "2rem",
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     letterSpacing: "0.05em",
     fontFamily: font.main,
     fontWeight: "800",
-    marginBottom: "2rem"
-
+    marginBottom: "2rem",
+    textTransform: "capitalize"
   },
   activityInfo: {
     width: "343px",
