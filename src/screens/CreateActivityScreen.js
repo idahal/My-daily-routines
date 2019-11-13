@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
 import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { Button, StyleSheet, Text, View, Dimensions } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity
+} from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import HomeButton from "../components/HomeButton";
 import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
 import Title from "../components/Title";
+import MainButton from "../components/MainButton";
 var width = Dimensions.get("window").width; //full width
 var height = Dimensions.get("window").height; //full height
 
@@ -21,6 +29,7 @@ const CreateActivityScreen = props => {
 
   const db = app.firestore();
   const [activity, setActivity] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -60,8 +69,9 @@ const CreateActivityScreen = props => {
       {authUser ? (
         <View style={styles.container}>
           <Text style={styles.text}>Steg 2 av 2</Text>
+          {/* Display the created activities */}
           <View>
-            <Text>{docName}</Text>
+            <Text style={styles.routineName}>{docName}</Text>
             <View style={styles.activityInfo}>
               <Text style={styles.activityInfoText}>Uppgift</Text>
               <Text style={styles.activityInfoText}>Tid</Text>
@@ -77,14 +87,30 @@ const CreateActivityScreen = props => {
               </View>
             ))}
           </View>
-
-          <AddActivity
-            docName={docName}
-            userId={userId}
-            collectionId={collectionId}
-            displayNewActivity={displayNewActivity}
-          />
-          <Button
+          <TouchableOpacity onPress={() => setShowForm(!showForm)}>
+            <Text>+ Lägg till en aktivitet.</Text>
+          </TouchableOpacity>
+          {showForm && (
+            <AddActivity
+              docName={docName}
+              userId={userId}
+              collectionId={collectionId}
+              displayNewActivity={displayNewActivity}
+            />
+          )}
+          <View style={styles.button}>
+            <MainButton
+              text="Gå vidare"
+              onPress={() =>
+                navigation.navigate("DisplayRoutineScreen", {
+                  name: docName,
+                  addedByUserUid: authUser.uid,
+                  keyId: collectionId
+                })
+              }
+            />
+          </View>
+          {/* <Button
             title="Gå vidare"
             onPress={() =>
               navigation.navigate("DisplayRoutineScreen", {
@@ -93,7 +119,7 @@ const CreateActivityScreen = props => {
                 keyId: collectionId
               })
             }
-          ></Button>
+          ></Button> */}
           <LogoutButton text="Logga ut" onPress={() => logout()} />
         </View>
       ) : (
@@ -109,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
-  text: {
+   text: {
     color: colors.black,
     marginTop: "2rem",
     marginBottom: "2rem",
@@ -117,12 +143,18 @@ const styles = StyleSheet.create({
     letterSpacing: "0.05em",
     fontFamily: font.main
   },
+  routineName: {
+    fontSize: "1.2rem",
+    letterSpacing: "0.05em",
+    fontFamily: font.main,
+    fontWeight: "800",
+    marginBottom: "2rem"
+
+  },
   activityInfo: {
     width: "343px",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: "1rem",
-    paddingRight: "1rem",
     marginBottom: "1rem"
   },
   activityInfoText: {
@@ -148,7 +180,11 @@ const styles = StyleSheet.create({
   activityCardText: {
     fontFamily: font.main,
     fontSize: "1rem",
-    letterSpacing: "0.05em"
+    letterSpacing: "0.05em",
+    textTransform: "capitalize"
+  },
+  button: {
+    marginBottom: "5rem"
   }
 });
 export default CreateActivityScreen;
