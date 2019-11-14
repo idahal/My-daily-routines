@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   View,
-  Button,
   TouchableOpacity
 } from "react-native";
 import firebase from "../config/firebase";
@@ -19,8 +18,7 @@ const LogInScreen = props => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [inputError, setInputError] = useState("");
-
-  // const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -31,15 +29,10 @@ const LogInScreen = props => {
     setInputError("");
   };
 
-  const logout = () => {
-    firebase.auth().signOut();
-  };
-
   const isInvalid = userEmail === "" || userPassword === "";
-
   const login = async e => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     setInputError(null);
     try {
       await firebase.auth().signInWithEmailAndPassword(userEmail, userPassword);
@@ -52,7 +45,7 @@ const LogInScreen = props => {
         setInputError("Du uppgav fel lösenord");
       }
     } finally {
-      // setLoading(false);
+      setLoading(false);
       if (inputError !== "") {
         resetForm();
       }
@@ -70,11 +63,7 @@ const LogInScreen = props => {
       )}
       <View>
         {authUser ? (
-          <>
-            {navigation.navigate("HomeScreen")}
-            <Text>Du är inloggad</Text>
-            <Button title="Logga ut" type="submit" onPress={logout} />
-          </>
+          <>{navigation.navigate("HomeScreen")}</>
         ) : (
           <>
             <TextInput
@@ -127,6 +116,7 @@ const styles = StyleSheet.create({
     width: 230,
     borderColor: colors.black,
     borderWidth: 0.5,
+    outlineColor: colors.dark,
     borderStyle: "solid",
     marginTop: "1rem",
     fontFamily: font.main,

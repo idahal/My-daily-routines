@@ -18,8 +18,7 @@ const SignUpScreen = props => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [inputError, setInputError] = useState("");
-
-  // const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -34,7 +33,7 @@ const SignUpScreen = props => {
 
   const submitForm = async e => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     setInputError(null);
     try {
       await firebase
@@ -49,7 +48,7 @@ const SignUpScreen = props => {
         setInputError("Emailadressen används redan");
       }
     } finally {
-      // setLoading(false);
+      setLoading(false);
       if (inputError !== "") {
         resetInput();
       }
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderWidth: 0.5,
     borderStyle: "solid",
+    outlineColor: colors.dark,
     marginTop: "1rem",
     fontFamily: font.main,
     paddingLeft: 5,
