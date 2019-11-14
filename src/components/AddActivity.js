@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderWidth: 0.5,
     borderStyle: "solid",
+    outlineColor: colors.dark,
     marginTop: "1rem",
     marginLeft: "2rem",
     fontFamily: font.main,

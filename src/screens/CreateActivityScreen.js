@@ -8,6 +8,7 @@ import font from "../constants/Fonts";
 import HomeButton from "../components/HomeButton";
 import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
+import RemoveActivity from "../components/RemoveActivity";
 import Title from "../components/Title";
 import MainButton from "../components/MainButton";
 
@@ -75,7 +76,10 @@ const CreateActivityScreen = props => {
                 <Text style={styles.activityCardText}>
                   {item.description} min
                 </Text>
-                <Text>X</Text>
+                <RemoveActivity id={item.id} collectionId={collectionId} />
+                {/* <TouchableOpacity>
+                  <Text>{item.id}</Text>
+                </TouchableOpacity> */}
               </View>
             ))}
           </View>
@@ -90,6 +94,7 @@ const CreateActivityScreen = props => {
               displayNewActivity={displayNewActivity}
             />
           )}
+
           <View style={styles.button}>
             <MainButton
               text="Gå vidare"
