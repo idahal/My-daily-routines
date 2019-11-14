@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { StyleSheet, Text } from "react-native";
+// import React, { Component } from "react";
+// import { StyleSheet, Text } from "react-native";
 
-class CustomText extends Component {
-  setFontType = type => {
-    switch (type) {
-      case "extra-bold":
-        return "Raleway-ExtraBold";
-      case "light-italic":
-        return "Raleway-LightItalic";
-      case "gloria":
-        return "GloriaHallelujah-Regular";
-      default:
-        return "Raleway-Regular";
-    }
-  };
+// class CustomText extends Component {
+//   setFontType = type => {
+//     switch (type) {
+//       case "extra-bold":
+//         return "Raleway-ExtraBold";
+//       case "light-italic":
+//         return "Raleway-LightItalic";
+//       case "gloria":
+//         return "GloriaHallelujah-Regular";
+//       default:
+//         return "Raleway-Regular";
+//     }
+//   };
 
-  render() {
-    const font = this.setFontType(this.props.type ? this.props.type : "normal");
-    const style = [{ fontFamily: font }, this - this.props.style || {}];
-    return <Text style={style}>{this.props.children}</Text>;
-  }
-}
+//   render() {
+//     const font = this.setFontType(this.props.type ? this.props.type : "normal");
+//     const style = [{ fontFamily: font }, this - this.props.style || {}];
+//     return <Text style={style}>{this.props.children}</Text>;
+//   }
+// }
 
-export default CustomText;
+// export default CustomText;

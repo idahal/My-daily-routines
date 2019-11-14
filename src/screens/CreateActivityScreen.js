@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
 import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import HomeButton from "../components/HomeButton";
@@ -17,8 +10,6 @@ import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
 import Title from "../components/Title";
 import MainButton from "../components/MainButton";
-var width = Dimensions.get("window").width; //full width
-var height = Dimensions.get("window").height; //full height
 
 const CreateActivityScreen = props => {
   const { navigation } = props;
@@ -52,6 +43,7 @@ const CreateActivityScreen = props => {
         });
         setActivity(tempArray);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db]);
 
   const displayNewActivity = object => {

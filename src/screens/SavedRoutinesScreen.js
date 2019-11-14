@@ -36,6 +36,7 @@ const SavedRoutineScreen = props => {
           setRoutine(tempArray);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db]);
 
   return (

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../config/auth";
 import app from "../config/firebase";
 
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Timer from "../components/Timer";
 import Title from "../components/Title";
 import HomeButton from "../components/HomeButton";
@@ -46,10 +46,12 @@ const DisplayRoutineScreen = props => {
         });
         setActivity(tempArray);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [db]);
 
   useEffect(() => {
     countTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activity]);
 
   return (

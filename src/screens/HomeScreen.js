@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../config/auth";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import firebase from "../config/firebase";
 import colors from "../constants/Colors";
 import Hero from "../components/Hero";

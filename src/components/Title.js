@@ -7,7 +7,7 @@ var width = Dimensions.get("window").width; //full width
 // var height = Dimensions.get("window").height; //full height
 
 const Title = props => {
-  const { title, text } = props;
+  const { title } = props;
   return (
     <View style={styles.topview}>
       <Text style={styles.titletext}>{title}</Text>
