@@ -18,7 +18,7 @@ const LogInScreen = props => {
   const { navigation } = props;
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userError, setUserError] = useState(null);
+  const [inputError, setInputError] = useState("");
 
   // const [setLoading] = useState(false);
 
@@ -28,7 +28,7 @@ const LogInScreen = props => {
   const resetForm = () => {
     setUserEmail("");
     setUserPassword("");
-    setUserError("");
+    setInputError("");
   };
 
   const logout = () => {
@@ -40,16 +40,22 @@ const LogInScreen = props => {
   const login = async e => {
     e.preventDefault();
     // setLoading(true);
-    setUserError(null);
+    setInputError(null);
     try {
       await firebase.auth().signInWithEmailAndPassword(userEmail, userPassword);
-      // redirect user?
       navigation.navigate("HomeScreen");
-    } catch (err) {
-      setUserError(err);
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        setInputError("Du måste ange en emailadress");
+      }
+      if (error.code === "auth/wrong-password") {
+        setInputError("Du uppgav fel lösenord");
+      }
     } finally {
       // setLoading(false);
-      resetForm();
+      if (inputError !== "") {
+        resetForm();
+      }
     }
   };
 
@@ -57,6 +63,11 @@ const LogInScreen = props => {
     <View style={styles.container}>
       <Hero />
       <Text style={styles.text}>Logga in här:</Text>
+      {inputError !== "" && (
+        <View style={styles.errors}>
+          <Text style={styles.errorsText}>{inputError}</Text>
+        </View>
+      )}
       <View>
         {authUser ? (
           <>
@@ -95,7 +106,6 @@ const LogInScreen = props => {
           </>
         )}
       </View>
-      {userError && <Text>{userError.message}</Text>}
     </View>
   );
 };
@@ -105,6 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center"
+  },
+  errorsText: {
+    fontSize: "0.8rem",
+    fontFamily: font.main,
+    color: colors.error,
+    textAlign: "center"
   },
   textInput: {
     height: 50,

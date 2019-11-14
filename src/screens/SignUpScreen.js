@@ -17,9 +17,9 @@ const SignUpScreen = props => {
   const { navigation } = props;
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [setUserError] = useState("");
+  const [inputError, setInputError] = useState("");
 
-  const [setLoading] = useState(false);
+  // const [setLoading] = useState(false);
 
   // Get user if logged in
   const { authUser } = useAuth();
@@ -27,25 +27,32 @@ const SignUpScreen = props => {
   const resetInput = () => {
     setUserEmail("");
     setUserPassword("");
-    setUserError("");
+    setInputError("");
   };
 
   const isInvalid = userEmail === "" || userPassword === "";
 
   const submitForm = async e => {
     e.preventDefault();
-    setLoading(true);
-    setUserError(null);
+    // setLoading(true);
+    setInputError(null);
     try {
       await firebase
         .auth()
         .createUserWithEmailAndPassword(userEmail, userPassword);
-      // redirect user?
-    } catch (err) {
-      setUserError(err);
+      navigation.navigate("HomeScreen");
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        setInputError("Du måste ange en emailadress");
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setInputError("Emailadressen används redan");
+      }
     } finally {
-      setLoading(false);
-      resetInput();
+      // setLoading(false);
+      if (inputError !== "") {
+        resetInput();
+      }
     }
   };
 
@@ -54,12 +61,17 @@ const SignUpScreen = props => {
       <Hero />
       <Text style={styles.text}>Registrera ditt konto här:</Text>
 
+      {inputError !== "" && (
+        <View style={styles.errors}>
+          <Text style={styles.errorsText}>{inputError}</Text>
+        </View>
+      )}
       {authUser ? (
         <Text>Du är redan inloggad</Text>
       ) : (
         <View>
           <TextInput
-            placeholder="Email"
+            placeholder="Skriv din email"
             autoCapitalize="none"
             style={styles.textInput}
             onChange={e => setUserEmail(e.target.value)}
@@ -67,7 +79,7 @@ const SignUpScreen = props => {
           />
           <TextInput
             secureTextEntry
-            placeholder="Password"
+            placeholder="Skriv ett lösenord"
             autoCapitalize="none"
             style={styles.textInput}
             onChange={e => setUserPassword(e.target.value)}
@@ -89,7 +101,6 @@ const SignUpScreen = props => {
           </TouchableOpacity>
         </View>
       )}
-      {/* <View>{userError && <Text>{userError.message}</Text>}</View> */}
     </View>
   );
 };
@@ -99,6 +110,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center"
+  },
+  errorsText: {
+    fontSize: "0.8rem",
+    fontFamily: font.main,
+    color: colors.error,
+    textAlign: "center"
   },
   textInput: {
     height: 50,
@@ -131,4 +148,5 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
 export default SignUpScreen;
