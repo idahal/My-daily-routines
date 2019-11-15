@@ -15,10 +15,6 @@ const AddRoutine = props => {
   // Get user if logged in
   const { authUser } = useAuth();
 
-  // const resetForm = () => {
-  //   setRoutineName("");
-  // };
-
   const isInvalid = routineName === "";
 
   const addNewRoutine = async e => {
@@ -42,8 +38,6 @@ const AddRoutine = props => {
             addedByUserUid: authUser.uid,
             keyId: docRef.id
           });
-
-          // resetForm();
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);
@@ -82,6 +76,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 230,
     borderColor: colors.black,
+    outlineColor: colors.dark,
     borderWidth: 0.5,
     borderStyle: "solid",
     marginTop: "1rem",

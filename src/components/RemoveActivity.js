@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import app from "../config/firebase";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import Xmark from "../icons/Xmark";
 
 const RemoveActivity = props => {
   const db = app.firestore();
   const itemId = props.id;
   const collectionId = props.collectionId;
-  
+
   const activityRef = db
     .collection("routines")
     .doc(collectionId)
@@ -23,6 +23,5 @@ const RemoveActivity = props => {
     </View>
   );
 };
-
 
 export default RemoveActivity;
