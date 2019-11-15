@@ -24,8 +24,8 @@ const LogoutButton = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-end"
+    position: "absolute",
+    bottom: 0
   },
   button: {
     margin: 0,
@@ -37,8 +37,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 16,
     paddingRight: 16
-    // position: "static",
-    // bottom: 0
   },
   buttonText: {
     textTransform: "uppercase",

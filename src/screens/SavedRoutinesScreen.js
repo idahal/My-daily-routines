@@ -82,6 +82,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   listContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center"
   },
   button: {
