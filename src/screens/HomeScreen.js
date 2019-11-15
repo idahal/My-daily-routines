@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../config/auth";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import firebase from "../config/firebase";
 import colors from "../constants/Colors";
 import Hero from "../components/Hero";
@@ -22,24 +22,26 @@ const HomeScreen = props => {
         <View style={styles.container}>
           <Hero />
           {/* main menu */}
-          <MenuButton
-            text="Skapa en rutin"
-            onPress={() => {
-              navigation.navigate("CreateRoutineScreen");
-            }}
-          />
-          <MenuButton
-            text="Mina sparade rutiner"
-            onPress={() => {
-              navigation.navigate("SavedRoutinesScreen");
-            }}
-          />
-          <MenuButton
-            text="Inställningar"
-            onPress={() => {
-              navigation.navigate("/");
-            }}
-          />
+          <ScrollView style={styles.scrollcontainer}>
+            <MenuButton
+              text="Skapa en rutin"
+              onPress={() => {
+                navigation.navigate("CreateRoutineScreen");
+              }}
+            />
+            <MenuButton
+              text="Mina sparade rutiner"
+              onPress={() => {
+                navigation.navigate("SavedRoutinesScreen");
+              }}
+            />
+            <MenuButton
+              text="Inställningar"
+              onPress={() => {
+                navigation.navigate("/");
+              }}
+            />
+          </ScrollView>
 
           <LogoutButton text="Logga ut" onPress={() => logout()} />
         </View>
@@ -55,6 +57,9 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: colors.lightWhite
+  },
+  scrollcontainer: {
     backgroundColor: colors.lightWhite
   },
   button: {
