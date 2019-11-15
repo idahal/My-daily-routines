@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import colors from "../constants/Colors";
-import font from "../constants/Fonts";
-import MainButton from "./MainButton";
+import Xmark from "../icons/Xmark";
+
+// import colors from "../constants/Colors";
+// import font from "../constants/Fonts";
+// import MainButton from "./MainButton";
 
 const RemoveActivity = props => {
   const db = app.firestore();
@@ -25,7 +27,7 @@ const RemoveActivity = props => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={remove}>
-        <Text>x</Text>
+        <Xmark></Xmark>
       </TouchableOpacity>
     </View>
   );
@@ -33,8 +35,8 @@ const RemoveActivity = props => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "flex-end",
-    width: "100%"
+    // justifyContent: "flex-end",
+    // width: "100%"
   }
 });
 

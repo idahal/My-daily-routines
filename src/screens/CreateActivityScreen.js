@@ -68,18 +68,18 @@ const CreateActivityScreen = props => {
             <View style={styles.activityInfo}>
               <Text style={styles.activityInfoText}>Uppgift</Text>
               <Text style={styles.activityInfoText}>Tid</Text>
-              <Text style={styles.activityInfoText}>Ta bort</Text>
             </View>
             {activity.map(item => (
               <View style={styles.activityCard} key={item.id}>
-                <Text style={styles.activityCardText}>{item.name}</Text>
-                <Text style={styles.activityCardText}>
-                  {item.description} min
-                </Text>
-                <RemoveActivity id={item.id} collectionId={collectionId} />
-                {/* <TouchableOpacity>
-                  <Text>{item.id}</Text>
-                </TouchableOpacity> */}
+                <View>
+                  <Text style={styles.activityCardText}>{item.name}</Text>
+                </View>
+                <View style={styles.rightBox}>
+                  <Text style={styles.activityCardText}>
+                    {item.description} min
+                  </Text>
+                  <RemoveActivity id={item.id} collectionId={collectionId} />
+                </View>
               </View>
             ))}
           </View>
@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     width: "343px",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: "1rem"
+    marginBottom: "1rem",
+    paddingRight: "5rem"
   },
   activityInfoText: {
     fontSize: "1.2rem",
@@ -186,6 +187,11 @@ const styles = StyleSheet.create({
     fontSize: "1rem",
     letterSpacing: "0.05em",
     textTransform: "capitalize"
+  },
+  rightBox: {
+    width: "30%",
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   button: {
     marginBottom: "5rem"
