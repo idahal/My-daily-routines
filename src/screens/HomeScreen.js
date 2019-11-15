@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightWhite
   },
   scrollcontainer: {
-    backgroundColor: colors.lightWhite
+    marginTop: "2rem",
+    marginBottom: "2rem"
   },
   button: {
     marginTop: 30,

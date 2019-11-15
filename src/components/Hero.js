@@ -6,7 +6,7 @@ import { Dimensions } from "react-native";
 import heroImage from "../assets/images/black.jpg";
 
 var width = Dimensions.get("window").width; //full width
-// var height = Dimensions.get("window").height; //full height
+var height = Dimensions.get("window").height; //full height
 
 const Hero = () => {
   return (
@@ -22,7 +22,7 @@ const Hero = () => {
 const styles = StyleSheet.create({
   welcomeImage: {
     width: width,
-    height: 250,
+    height: height / 3,
     position: "relative"
   },
   titletext: {
