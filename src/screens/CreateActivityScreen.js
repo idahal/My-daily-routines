@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import HomeButton from "../components/HomeButton";
-import LogoutButton from "../components/LogoutButton";
+// import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
 import RemoveActivity from "../components/RemoveActivity";
 import Title from "../components/Title";
@@ -15,10 +15,10 @@ import MainButton from "../components/MainButton";
 const CreateActivityScreen = props => {
   const { navigation } = props;
 
-  const logout = () => {
-    firebase.auth().signOut();
-    navigation.navigate("LogInScreen");
-  };
+  // const logout = () => {
+  //   firebase.auth().signOut();
+  //   navigation.navigate("LogInScreen");
+  // };
 
   const db = app.firestore();
   const [activity, setActivity] = useState([]);
@@ -117,7 +117,7 @@ const CreateActivityScreen = props => {
               })
             }
           ></Button> */}
-          <LogoutButton text="Logga ut" onPress={() => logout()} />
+          {/* <LogoutButton text="Logga ut" onPress={() => logout()} /> */}
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>

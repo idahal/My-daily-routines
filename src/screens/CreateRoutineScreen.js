@@ -7,7 +7,7 @@ import font from "../constants/Fonts";
 
 import AddRoutine from "../components/AddRoutine";
 import HomeButton from "../components/HomeButton";
-import LogoutButton from "../components/LogoutButton";
+// import LogoutButton from "../components/LogoutButton";
 
 import Title from "../components/Title";
 // var width = Dimensions.get("window").width; //full width
@@ -16,9 +16,9 @@ import Title from "../components/Title";
 const CreateRoutineScreen = props => {
   const { navigation } = props;
 
-  const logout = () => {
-    firebase.auth().signOut();
-  };
+  // const logout = () => {
+  //   firebase.auth().signOut();
+  // };
 
   const [routine, setRoutine] = useState([]);
   // Get user if logged in
@@ -40,7 +40,7 @@ const CreateRoutineScreen = props => {
         <View style={styles.container}>
           <Text style={styles.text}>Steg 1 av 2</Text>
           <AddRoutine addNewRoutine={addNewRoutine} navigation={navigation} />
-          <LogoutButton text="Logga ut" onPress={() => logout()} />
+          {/* <LogoutButton text="Logga ut" onPress={() => logout()} /> */}
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>

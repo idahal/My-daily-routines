@@ -5,17 +5,17 @@ import { useAuth } from "../config/auth";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Title from "../components/Title";
 import HomeButton from "../components/HomeButton";
-import LogoutButton from "../components/LogoutButton";
+// import LogoutButton from "../components/LogoutButton";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
 const SavedRoutineScreen = props => {
   const { navigation } = props;
 
-  const logout = () => {
-    firebase.auth().signOut();
-    navigation.navigate("LogInScreen");
-  };
+  // const logout = () => {
+  //   firebase.auth().signOut();
+  //   navigation.navigate("LogInScreen");
+  // };
 
   const db = app.firestore();
   const [routine, setRoutine] = useState([]);
@@ -66,7 +66,7 @@ const SavedRoutineScreen = props => {
               </View>
             </TouchableOpacity>
           ))}
-          <LogoutButton text="Logga ut" onPress={() => logout()} />
+          {/* <LogoutButton text="Logga ut" onPress={() => logout()} /> */}
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>
