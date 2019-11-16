@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     fontFamily: font.main
   },
   routineName: {
-    fontSize: "1.2rem",
+    fontSize: "1.5rem",
     letterSpacing: "0.05em",
     fontFamily: font.main,
     fontWeight: "800",
