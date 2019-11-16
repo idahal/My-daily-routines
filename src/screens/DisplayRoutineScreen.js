@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   },
   oneRoutine: {
     width: "343px",
-    // height: "516px",
     borderColor: colors.dark,
     borderWidth: "1px",
     borderStyle: "solid",
@@ -114,13 +113,14 @@ const styles = StyleSheet.create({
     marginBottom: "1rem"
   },
   routineName: {
-    fontSize: "1.2rem",
+    color: colors.black,
+    marginTop: "2rem",
+    marginBottom: "2rem",
+    fontSize: "1.5rem",
     letterSpacing: "0.05em",
     fontFamily: font.main,
-    fontWeight: "800",
-    marginTop: "1rem",
-    marginBottom: "2rem",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
+    textAlign: "center"
   },
   activityInfo: {
     width: "313px",
@@ -132,7 +132,9 @@ const styles = StyleSheet.create({
     fontSize: "1.2rem",
     letterSpacing: "0.05em",
     fontFamily: font.main,
-    fontWeight: "800"
+    fontWeight: "800",
+    paddingLeft: "1rem",
+    paddingRight: "1rem"
   },
   activityCard: {
     width: "313px",

@@ -68,7 +68,7 @@ const SignUpScreen = props => {
       {authUser ? (
         <Text>Du är redan inloggad</Text>
       ) : (
-        <View>
+        <View style={styles.container}>
           <TextInput
             placeholder="Skriv din email"
             autoCapitalize="none"

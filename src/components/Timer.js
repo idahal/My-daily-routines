@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     fontFamily: font.main,
     fontSize: "4rem",
     textAlign: "center",
-    marginTop: "2rem"
+    marginTop: "1rem"
   },
   timerButtons: {
     flexDirection: "row",
