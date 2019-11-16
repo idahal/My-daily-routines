@@ -5,17 +5,12 @@ import { useAuth } from "../config/auth";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Title from "../components/Title";
 import HomeButton from "../components/HomeButton";
-// import LogoutButton from "../components/LogoutButton";
+import GotoButton from "../components/GotoButton";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
 const SavedRoutineScreen = props => {
   const { navigation } = props;
-
-  // const logout = () => {
-  //   firebase.auth().signOut();
-  //   navigation.navigate("LogInScreen");
-  // };
 
   const db = app.firestore();
   const [routine, setRoutine] = useState([]);
@@ -49,24 +44,22 @@ const SavedRoutineScreen = props => {
       {authUser ? (
         <View style={styles.listContainer}>
           {routine.map(item => (
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                navigation.navigate("DisplayRoutineScreen", {
-                  name: item.name,
-                  addedByUserUid: authUser.uid,
-                  keyId: item.id
-                })
-              }
-            >
-              <View style={styles.routineCard} key={item.id}>
-                <Text key={item.id} style={styles.routineCardText}>
-                  {item.name}
-                </Text>
-              </View>
-            </TouchableOpacity>
+            <View style={styles.routineCard} key={item.id}>
+              <Text key={item.id} style={styles.routineCardText}>
+                {item.name}
+              </Text>
+              <GotoButton
+                text={"Gå till"}
+                onPress={() =>
+                  navigation.navigate("DisplayRoutineScreen", {
+                    name: item.name,
+                    addedByUserUid: authUser.uid,
+                    keyId: item.id
+                  })
+                }
+              ></GotoButton>
+            </View>
           ))}
-          {/* <LogoutButton text="Logga ut" onPress={() => logout()} /> */}
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>
@@ -86,12 +79,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
-  button: {
-    marginTop: 20
-  },
+
   routineCard: {
+    marginTop: "2rem",
     width: "343px",
-    height: "50px",
+    height: "100px",
     borderColor: colors.dark,
     borderWidth: "1px",
     borderStyle: "solid",
@@ -117,7 +109,7 @@ const styles = StyleSheet.create({
     color: colors.dark,
     fontSize: "1.2rem",
     letterSpacing: "0.05em",
-    textTransform: "capitalize"
+    
   }
 });
 export default SavedRoutineScreen;
