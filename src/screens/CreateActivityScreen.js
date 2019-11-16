@@ -15,11 +15,6 @@ import MainButton from "../components/MainButton";
 const CreateActivityScreen = props => {
   const { navigation } = props;
 
-  // const logout = () => {
-  //   firebase.auth().signOut();
-  //   navigation.navigate("LogInScreen");
-  // };
-
   const db = app.firestore();
   const [activity, setActivity] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -84,7 +79,12 @@ const CreateActivityScreen = props => {
             ))}
           </View>
           <TouchableOpacity onPress={() => setShowForm(!showForm)}>
-            <Text>+ Lägg till en aktivitet.</Text>
+            {showForm ? (
+              <Text>- Minimera</Text>
+            ) : (
+              <Text>+ Lägg till en aktivitet.</Text>
+            )}
+            {/* <Text>+ Lägg till en aktivitet.</Text> */}
           </TouchableOpacity>
           {showForm && (
             <AddActivity
@@ -107,17 +107,6 @@ const CreateActivityScreen = props => {
               }
             />
           </View>
-          {/* <Button
-            title="Gå vidare"
-            onPress={() =>
-              navigation.navigate("DisplayRoutineScreen", {
-                name: docName,
-                addedByUserUid: authUser.uid,
-                keyId: collectionId
-              })
-            }
-          ></Button> */}
-          {/* <LogoutButton text="Logga ut" onPress={() => logout()} /> */}
         </View>
       ) : (
         <Text>Du är inte inloggad</Text>

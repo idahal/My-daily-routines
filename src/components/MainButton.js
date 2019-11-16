@@ -18,7 +18,7 @@ const LogoutButton = props => {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 32,
+    marginTop: "2rem",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
