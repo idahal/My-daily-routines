@@ -47,6 +47,9 @@ const SignUpScreen = props => {
       if (error.code === "auth/email-already-in-use") {
         setInputError("Emailadressen används redan");
       }
+      if (error.code === "auth/weak-password") {
+        setInputError("Lösenordet måste innehålla minst 6 tecken.");
+      }
     } finally {
       setLoading(false);
       if (inputError !== "") {
