@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import app from "../config/firebase";
 import { View, TouchableOpacity } from "react-native";
 import Xmark from "../icons/Xmark";
