@@ -38,6 +38,7 @@ const DisplayRoutineScreen = props => {
     db.collection("routines")
       .doc(collectionId)
       .collection("activity")
+      .orderBy("date")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {

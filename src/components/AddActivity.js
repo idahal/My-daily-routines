@@ -28,6 +28,7 @@ const AddActivity = props => {
     e.preventDefault();
 
     if (authUser) {
+      const createdAt = new Date();
       // Write data to firebase:
       db.collection("routines")
         .doc(props.collectionId)
@@ -36,7 +37,8 @@ const AddActivity = props => {
         .set({
           name: activityName,
           description: number,
-          addedByUserUid: authUser.uid
+          addedByUserUid: authUser.uid,
+          date: createdAt
         })
         .then(function() {
           resetForm();
