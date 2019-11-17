@@ -9,7 +9,6 @@ import {
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 var width = Dimensions.get("window").width; //full width
-// var height = Dimensions.get("window").height; //full height
 
 const LogoutButton = props => {
   const { text, onPress } = props;

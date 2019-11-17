@@ -4,7 +4,6 @@ import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
 var width = Dimensions.get("window").width; //full width
-// var height = Dimensions.get("window").height; //full height
 
 const Title = props => {
   const { title } = props;
@@ -26,8 +25,8 @@ const styles = StyleSheet.create({
   },
   titletext: {
     color: colors.lightWhite,
-    position: "absolute", // child
-    top: "3rem", // position where you want
+    position: "absolute",
+    top: "3rem",
     textAlign: "center",
     fontSize: "1.5rem",
     fontFamily: font.gloria,

@@ -21,18 +21,13 @@ const AddRoutine = props => {
     e.preventDefault();
 
     if (authUser) {
-      // Add data to firebase:
+      // Add data to firebase
       db.collection("routines")
-
         .add({
           name: routineName,
           addedByUserUid: authUser.uid
         })
         .then(function(docRef) {
-          console.log(docRef.id);
-          console.log({ routineName });
-          console.log(authUser);
-
           navigation.navigate("CreateActivityScreen", {
             name: routineName,
             addedByUserUid: authUser.uid,

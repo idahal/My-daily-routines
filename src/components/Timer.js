@@ -5,10 +5,8 @@ import MainButton from "../components/MainButton";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 
-// const { navigation } = props;
 
 const Timer = props => {
-  // Change useState value to dynamic
   let number = props.total;
   const [count, setCounter] = useState(number);
   const [isActive, setIsActive] = useState(false);

@@ -51,7 +51,7 @@ const LogInScreen = props => {
       }
     }
   };
-  console.log(inputError);
+
   return (
     <View style={styles.container}>
       <Hero />

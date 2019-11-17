@@ -3,7 +3,6 @@ import { TouchableOpacity, Text, StyleSheet, Dimensions } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 var width = Dimensions.get("window").width; //full width
-// var height = Dimensions.get("window").height; //full height
 
 const HomeButton = props => {
   const { text, onPress } = props;

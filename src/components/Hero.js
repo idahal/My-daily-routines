@@ -45,4 +45,5 @@ const styles = StyleSheet.create({
     textTransform: "uppercase"
   }
 });
+
 export default Hero;

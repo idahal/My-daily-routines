@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import app from "../config/firebase";
-import firebase from "../config/firebase";
 import { useAuth } from "../config/auth";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import colors from "../constants/Colors";
 import font from "../constants/Fonts";
 import HomeButton from "../components/HomeButton";
-// import LogoutButton from "../components/LogoutButton";
 import AddActivity from "../components/AddActivity";
 import RemoveActivity from "../components/RemoveActivity";
 import Title from "../components/Title";
@@ -83,8 +81,7 @@ const CreateActivityScreen = props => {
               <Text>- Minimera</Text>
             ) : (
               <Text>+ Lägg till en aktivitet.</Text>
-            )}
-            {/* <Text>+ Lägg till en aktivitet.</Text> */}
+            )}           
           </TouchableOpacity>
           {showForm && (
             <AddActivity
@@ -186,4 +183,5 @@ const styles = StyleSheet.create({
     marginBottom: "5rem"
   }
 });
+
 export default CreateActivityScreen;

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../config/firebase";
 import app from "../config/firebase";
 import { useAuth } from "../config/auth";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Title from "../components/Title";
 import HomeButton from "../components/HomeButton";
 import GotoButton from "../components/GotoButton";
@@ -108,8 +107,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: colors.dark,
     fontSize: "1.2rem",
-    letterSpacing: "0.05em",
-    
+    letterSpacing: "0.05em"
   }
 });
 export default SavedRoutineScreen;

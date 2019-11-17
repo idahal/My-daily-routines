@@ -21,7 +21,6 @@ const DisplayRoutineScreen = props => {
 
   //Get params from addRoutineScreen
   const docName = navigation.getParam("name");
-  //   const userId = navigation.getParam("addedByUserUid");
   const collectionId = navigation.getParam("keyId");
 
   const countTotal = () => {
