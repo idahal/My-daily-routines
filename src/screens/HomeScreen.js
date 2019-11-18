@@ -10,11 +10,11 @@ import LogoutButton from "../components/LogoutButton";
 const HomeScreen = props => {
   const { navigation } = props;
 
+  const { authUser } = useAuth();
+
   const logout = () => {
     firebase.auth().signOut();
   };
-
-  const { authUser } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -36,9 +36,9 @@ const HomeScreen = props => {
               }}
             />
             <MenuButton
-              text="Inställningar"
+              text="Mitt konto"
               onPress={() => {
-                navigation.navigate("/");
+                navigation.navigate("SettingScreen");
               }}
             />
           </ScrollView>
@@ -86,4 +86,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-

@@ -8,6 +8,7 @@ import CreateActivityScreen from "../screens/CreateActivityScreen";
 import CreateRoutineScreen from "../screens/CreateRoutineScreen";
 import SavedRoutinesScreen from "../screens/SavedRoutinesScreen";
 import DisplayRoutineScreen from "../screens/DisplayRoutineScreen";
+import SettingScreen from "../screens/SettingScreen";
 
 const SwitchNavigator = createSwitchNavigator(
   {
@@ -31,6 +32,9 @@ const SwitchNavigator = createSwitchNavigator(
     },
     DisplayRoutineScreen: {
       screen: DisplayRoutineScreen
+    },
+    SettingScreen: {
+      screen: SettingScreen
     }
   },
   {
